@@ -560,7 +560,7 @@ namespace Racemic {
         cout << "Box info\n";
         cout << 2.*rCut/a1l << "\t" << 2.*rCut/a2l << "\t" << 2.*rCut/a3l << "\n";
         cout << 2*iMax + 1 << "\t" << 2*jMax + 1 << "\t" << 2*kMax + 1 << "\n";
-        myxyz << (2*iMax+1)*(2*jMax+1)*(2*kMax+1)*4 <<"\n\n";
+        myxyz << (2*iMax+1)*(2*jMax+1)*(2*kMax+1)*8 <<"\n\n";
         
         for (int i=-iMax; i<=iMax; i++)
         {
@@ -638,6 +638,9 @@ namespace Racemic {
         if (norm > 0.001) q00 /= norm; q01 /= norm; q02 /= norm; q03 /= norm;
         
         vector<double3> newTetramer2 = rotate(double4(q00,q01,q02,q03),refTetramer2);
+        
+        
+        
         for (auto& t : newTetramer2) t = t + d1;
         
         const int iMax = ceil(rCut/a1l) + 1;
