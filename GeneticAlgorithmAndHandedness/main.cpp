@@ -549,16 +549,17 @@ namespace Racemic {
         vector<double3> newTetramer2 = rotate(double4(q00,q01,q02,q03),refTetramer2);
         for (auto& t : newTetramer2) t = t + d1;
         
-        const int iMax = ceil(rCut/a1l) + 1;
-        const int jMax = ceil(rCut/a2l) + 1;
-        const int kMax = ceil(rCut/a3l) + 1;
+        const double myrCut = 4.0;
+        const int iMax = ceil(myrCut/a1l) + 1;
+        const int jMax = ceil(myrCut/a2l) + 1;
+        const int kMax = ceil(myrCut/a3l) + 1;
         
         ofstream myxyz("lattice.xyz");
         int tetramercounted = 0;
         int ncount=0;
         
         cout << "Box info\n";
-        cout << 2.*rCut/a1l << "\t" << 2.*rCut/a2l << "\t" << 2.*rCut/a3l << "\n";
+        cout << 2.*myrCut/a1l << "\t" << 2.*myrCut/a2l << "\t" << 2.*myrCut/a3l << "\n";
         cout << 2*iMax + 1 << "\t" << 2*jMax + 1 << "\t" << 2*kMax + 1 << "\n";
         myxyz << (2*iMax+1)*(2*jMax+1)*(2*kMax+1)*8 <<"\n\n";
         
