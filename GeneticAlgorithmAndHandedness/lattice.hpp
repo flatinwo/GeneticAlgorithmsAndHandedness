@@ -31,6 +31,8 @@ struct double3
     {
         return double3(this->y*b.z - this->z*b.y, this->z*b.x - this->x*b.z, this->x*b.y - this->y*b.x);
     }
+    double get2Norm(){ return (x*x + y*y + z*z); }
+    double getLength(){ return sqrt(get2Norm());}
 };
 
 struct double4{

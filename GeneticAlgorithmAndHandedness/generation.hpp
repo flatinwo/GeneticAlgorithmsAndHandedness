@@ -22,8 +22,6 @@ class generation
 private:
     unsigned int generationCount;
     
-    // renormalize fitness, so that maximum fitness is 1
-    void renormalizeFitness();
     
     // check whether suitable parents exist
     bool checkParents();
@@ -57,6 +55,9 @@ public:
     
     // sort individuals by fitness
     void sortByFitness();
+    
+    // renormalize fitness, so that maximum fitness is 1
+    void renormalizeFitness();
 };
 
 #endif /* generation_hpp */

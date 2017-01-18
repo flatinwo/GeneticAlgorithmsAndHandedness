@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA29619A1DFF5E8A0010AA83 /* operators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA2961981DFF5E8A0010AA83 /* operators.cpp */; };
+		AA29619D1DFF613A0010AA83 /* crystal_search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA29619B1DFF613A0010AA83 /* crystal_search.cpp */; };
 		AAE90DDC1D666A9F00A4EA9C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DDB1D666A9F00A4EA9C /* main.cpp */; };
 		AAE90DE41D666AE600A4EA9C /* ran2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE21D666AE600A4EA9C /* ran2.cpp */; };
 		AAE90DE71D666B7A00A4EA9C /* lattice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE51D666B7A00A4EA9C /* lattice.cpp */; };
@@ -28,6 +30,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA2961981DFF5E8A0010AA83 /* operators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = operators.cpp; sourceTree = "<group>"; };
+		AA2961991DFF5E8A0010AA83 /* operators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = operators.hpp; sourceTree = "<group>"; };
+		AA29619B1DFF613A0010AA83 /* crystal_search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crystal_search.cpp; sourceTree = "<group>"; };
+		AA29619C1DFF613A0010AA83 /* crystal_search.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = crystal_search.hpp; sourceTree = "<group>"; };
+		AAA0962F1E15C71B00725CAE /* main_dep.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_dep.cpp; sourceTree = "<group>"; };
 		AAE90DD81D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GeneticAlgorithmAndHandedness; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE90DDB1D666A9F00A4EA9C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AAE90DE21D666AE600A4EA9C /* ran2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ran2.cpp; sourceTree = "<group>"; };
@@ -53,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AAA0962E1E15C70000725CAE /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				AAA0962F1E15C71B00725CAE /* main_dep.cpp */,
+			);
+			name = deprecated;
+			sourceTree = "<group>";
+		};
 		AAE90DCF1D666A9E00A4EA9C = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +90,10 @@
 				AAE90DDB1D666A9F00A4EA9C /* main.cpp */,
 				AAE90DE21D666AE600A4EA9C /* ran2.cpp */,
 				AAE90DE51D666B7A00A4EA9C /* lattice.cpp */,
+				AA2961981DFF5E8A0010AA83 /* operators.cpp */,
+				AA29619B1DFF613A0010AA83 /* crystal_search.cpp */,
+				AA29619C1DFF613A0010AA83 /* crystal_search.hpp */,
+				AA2961991DFF5E8A0010AA83 /* operators.hpp */,
 				AAE90DE81D666C2E00A4EA9C /* gene.cpp */,
 				AAE90DEB1D666CAD00A4EA9C /* individual.cpp */,
 				AAE90DEE1D666D1F00A4EA9C /* generation.cpp */,
@@ -82,6 +101,7 @@
 				AAE90DEC1D666CAD00A4EA9C /* individual.hpp */,
 				AAE90DE91D666C2E00A4EA9C /* gene.hpp */,
 				AAE90DE61D666B7A00A4EA9C /* lattice.hpp */,
+				AAA0962E1E15C70000725CAE /* deprecated */,
 				AAE90DE31D666AE600A4EA9C /* ran2.hpp */,
 			);
 			path = GeneticAlgorithmAndHandedness;
@@ -145,9 +165,11 @@
 			files = (
 				AAE90DEA1D666C2E00A4EA9C /* gene.cpp in Sources */,
 				AAE90DE71D666B7A00A4EA9C /* lattice.cpp in Sources */,
+				AA29619D1DFF613A0010AA83 /* crystal_search.cpp in Sources */,
 				AAE90DE41D666AE600A4EA9C /* ran2.cpp in Sources */,
 				AAE90DF01D666D1F00A4EA9C /* generation.cpp in Sources */,
 				AAE90DED1D666CAD00A4EA9C /* individual.cpp in Sources */,
+				AA29619A1DFF5E8A0010AA83 /* operators.cpp in Sources */,
 				AAE90DDC1D666A9F00A4EA9C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +289,7 @@
 				AAE90DE11D666A9F00A4EA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

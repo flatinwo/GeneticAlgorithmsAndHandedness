@@ -108,7 +108,7 @@ bool gene::setValue(double _value)
     else
     {
         encode(_value);
-        return false;
+        return true;
     }
 }
 
