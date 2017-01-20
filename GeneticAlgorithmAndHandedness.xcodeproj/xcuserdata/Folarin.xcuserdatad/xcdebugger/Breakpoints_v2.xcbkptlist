@@ -313,22 +313,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GeneticAlgorithmAndHandedness/main.cpp"
-            timestampString = "506215981.10305"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GeneticAlgorithmAndHandedness/crystal_search.cpp"
             timestampString = "505798258.701493"
             startingColumnNumber = "9223372036854775807"
@@ -337,22 +321,6 @@
             endingLineNumber = "194"
             landmarkName = "CrystalSearch::run()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GeneticAlgorithmAndHandedness/main.cpp"
-            timestampString = "506215981.10305"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -410,12 +378,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GeneticAlgorithmAndHandedness/main.cpp"
-            timestampString = "506215981.10305"
+            timestampString = "506561709.035895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "TestNmolecule2R()"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "TestNmolecule2R(double density=0.24, double alpha=0.5)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -490,12 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GeneticAlgorithmAndHandedness/main.cpp"
-            timestampString = "506215981.10305"
+            timestampString = "506561709.035895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "TestNmolecule2R()"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "TestNmolecule2R(double density=0.24, double alpha=0.5)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
