@@ -20,7 +20,8 @@
 
 using namespace std;
 
-void TestNmolecule1(double density=0.24, double alpha=0.5){
+void TestNmolecule1(double density=0.24, double alpha=0.5,
+int iterations=2000, int popCount=5000){
      const int nmol = 1;
      
      std::vector<molecule> onemolecules(nmol);
@@ -46,8 +47,8 @@ void TestNmolecule1(double density=0.24, double alpha=0.5){
      search_instr.setMolecules(onemolecules);
      search_instr.chiralitymap["N"] =  1.0;
      search_instr.setCombinations(combns);
-    search_instr.populationCount=5000;
-    search_instr.iterations = 1000;
+    search_instr.populationCount=popCount;
+    search_instr.iterations = iterations;
      
      CrystalSearch onemolsearch(search_instr);
      onemolsearch.setDensity(density);
@@ -80,7 +81,8 @@ void TestNmolecule1(double density=0.24, double alpha=0.5){
 
 
 
-void TestNmolecule2(double density=0.24, double alpha=0.5){
+void TestNmolecule2(double density=0.24, double alpha=0.5,
+int iterations=2000, int popCount=5000){
     const int nmol = 2;
     
     std::vector<molecule> twomolecules(nmol);
@@ -110,8 +112,8 @@ void TestNmolecule2(double density=0.24, double alpha=0.5){
     search_instr.chiralitymap["N"] =  1.0;
     search_instr.chiralitymap["O"] =  -1.0;
     search_instr.setCombinations(combns);
-    search_instr.populationCount=5000;
-    search_instr.iterations = 1000;
+    search_instr.populationCount=popCount;
+    search_instr.iterations = iterations;
     
     CrystalSearch twomolsearch(search_instr);
     twomolsearch.setDensity(density);
@@ -140,7 +142,8 @@ void TestNmolecule2(double density=0.24, double alpha=0.5){
 }
 
 
-void TestNmolecule2R(double density=0.24, double alpha=0.5){
+void TestNmolecule2R(double density=0.24, double alpha=0.5,
+int iterations=2000, int popCount=5000){
     const int nmol = 2;
     
     std::vector<molecule> twomolecules(nmol);
@@ -180,8 +183,8 @@ void TestNmolecule2R(double density=0.24, double alpha=0.5){
     search_instr.chiralitymap["N"] =  1.0;
     search_instr.chiralitymap["O"] =  -1.0;
     search_instr.setCombinations(combns);
-    search_instr.iterations = 1000;
-    search_instr.populationCount=5000;
+    search_instr.iterations = iterations;
+    search_instr.populationCount=popCount;
     
     CrystalSearch twomolsearch(search_instr);
     twomolsearch.setDensity(density);
@@ -217,7 +220,8 @@ void TestNmolecule2R(double density=0.24, double alpha=0.5){
     
 }
 
-void TestNmolecule4R(double density=0.24, double alpha=0.5){
+void TestNmolecule4R(double density=0.24, double alpha=0.5,
+int iterations=2000, int popCount=5000){
     const int nmol = 4;
     
     std::vector<molecule> fourmolecules(nmol);
@@ -250,8 +254,8 @@ void TestNmolecule4R(double density=0.24, double alpha=0.5){
     search_instr.chiralitymap["N1"] = search_instr.chiralitymap["N2"] = 1.0;
     search_instr.chiralitymap["O1"] = search_instr.chiralitymap["O2"] = -1.0;
     search_instr.setCombinations(combns);
-    search_instr.iterations = 1000;
-    search_instr.populationCount=5000;
+    search_instr.iterations = iterations;
+    search_instr.populationCount=popCount;
     
     CrystalSearch fourmolsearch(search_instr);
     fourmolsearch.setDensity(density);
@@ -287,11 +291,13 @@ void TestNmolecule4R(double density=0.24, double alpha=0.5){
 
 int main(int argc, const char * argv[]) {
     
-    if (argc != 4){
-        std::cout << "Usage: " << argv[0] << " option (0,1,2,or 3) density alpha\n";
+    if (! (argc == 4 || argc == 5 || argc == 6)){
+        std::cout << "Usage: " << argv[0] << " option (0,1,2,or 3) density alpha [n_iterations=2000  popCount=5000]\n";
         exit(-2);
     }
-    
+   
+
+    // write log of command that calls functino 
     ofstream runlog("run.log",std::ofstream::out);
     for (unsigned int i=0;i<argc;i++) runlog << argv[i] << " ";
     runlog << "\n";
@@ -300,21 +306,31 @@ int main(int argc, const char * argv[]) {
     const int s_count = atoi(argv[1]);
     double density = atof(argv[2]);
     double alpha = atof(argv[3]);
+
+    int n_iterations=2000;
+    int popCount=5000;
+
+    if (argc >= 5) n_iterations = atoi(argv[4]);
+    if (argc == 6) popCount = atoi(argv[5]);
     
     assert(density > 0.);
     assert(abs(alpha)<1.0);
+    assert(n_iterations > 1);
+    assert(popCount > 2);
     
     switch (s_count) {
         case 0:
-            TestNmolecule1(density,alpha);
+            TestNmolecule1(density,alpha,n_iterations,popCount);
             break;
         case 1:
-            TestNmolecule2(density,alpha);
+            TestNmolecule2(density,alpha,n_iterations,popCount);
             break;
         case 2:
-            TestNmolecule2R(density,alpha);
+            TestNmolecule2R(density,alpha,n_iterations,popCount);
+	    break;
         case 3:
-            TestNmolecule4R(density, alpha);
+            TestNmolecule4R(density, alpha,n_iterations,popCount);
+	    break;
         default:
             std::cerr << "Unknown choice for switch option\n";
             break;
