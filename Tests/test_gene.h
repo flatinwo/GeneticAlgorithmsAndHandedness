@@ -35,7 +35,7 @@ TEST_F(geneTest,decode){
     
 }
 
-TEST_F(geneTest,strings){
+TEST_F(geneTest,falsestrings){
     const double three=3.;
     Gene->setValue(three);
     EXPECT_EQ(10,Gene->code.size());
