@@ -18,6 +18,9 @@
 #include <algorithm>
 #include <cassert>
 
+
+#define MYCOMBMAX 32
+
 typedef std::vector<gene> genes;
 
 struct configs_t{
@@ -27,7 +30,7 @@ struct configs_t{
     short maxmolecules;
     short populationCount;
     short iterations;
-    unsigned int bit=31;
+    unsigned int bit;
     std::vector< std::vector<std::string> > combinations;
     unsigned long ncombinations=0;
     
@@ -36,7 +39,7 @@ struct configs_t{
     
     std::map< std::string, double> chiralitymap;
     
-    configs_t(int n=1, bool or_flag=true, bool sw_flag=true):o_flag(or_flag),s_flag(sw_flag){
+    configs_t(int n=1, bool or_flag=true, bool sw_flag=true, unsigned int xbit=10):bit(xbit),o_flag(or_flag),s_flag(sw_flag){
         molecules.reserve(n);
         maxmolecules = 1024;
         iterations = 500;
@@ -60,13 +63,21 @@ struct configs_t{
                 for (unsigned int j=0;j<4;j++)
                     initGenes.push_back(gene(bit,-1.0,1.0)); //quaternions for rotation
         
-        if (s_flag) initGenes.push_back(gene(bit,0.0,1.0)); //probability of switching molecule identity
+        if (s_flag) initGenes.push_back(gene(2,0.0,1.0)); //probability of switching molecule identity
         
     }
     
     void setCombinations(const std::vector< std::vector<std::string> >& combns){
         assert(molecules.size() > 0);
+        assert(s_flag);
+        assert(combns.size() < MYCOMBMAX);
+        
+        unsigned int cbit = pow(2,combns.size()-1);
         for (auto const &n : combns) assert(n.size() < maxmolecules);
+        
+        initGenes.pop_back();
+        initGenes.push_back(gene(cbit,0.0,1.0));
+       
         //combinations.resize(combns.size());
         combinations = combns;
         ncombinations = combinations.size();
