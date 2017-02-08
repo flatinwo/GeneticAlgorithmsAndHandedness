@@ -50,7 +50,7 @@ void gene::initGene(unsigned int _length, double _minValue, double _maxValue)
 }
 
 // decode binary code to a value in the range [minValue,maxValue] with stepsize 1/maxIntValue
-void gene::decode()
+void gene::decode(bool diagnoze)
 {
     double r = 0.0;
     for (unsigned int i=0; i<length; i++) // interpret binary code as an unsigned integer
@@ -63,10 +63,12 @@ void gene::decode()
     r /= maxIntValue; // normalize code and transform into desired range
     value = minValue + r*(maxValue-minValue);
     
+    if (!diagnoze) gval.value = value;
+    
     decoded = true;
 }
 
-void gene::encode(double _value)
+void gene::encode(double _value, bool diagnoze)
 {
     // first, map value to range between 0...maxIntValue
     double r = maxIntValue*(_value - minValue)/(maxValue-minValue);
@@ -84,6 +86,11 @@ void gene::encode(double _value)
     }
     
     decoded = false;
+    
+    if (!diagnoze){
+        gval.code = code;
+        gval.codeString = makeString();
+    }
 }
 
 double gene::getValue()
@@ -117,6 +124,12 @@ void gene::forceDecode()
     decoded = false;
 }
 
+void gene::refreshToOldState(){
+    code = gval.code;
+    codeString = gval.codeString;
+    value = gval.value;
+}
+
 void gene::randomize()
 {
     for (unsigned int i=0; i<length; i++)
@@ -145,9 +158,64 @@ void gene::flip(double _pFlip)
     decoded = false;
 }
 
+double gene::returnValAndrefresh(){
+    decode(true);
+    double val = getValue();
+    forceDecode();
+    refreshToOldState();
+    return val;
+}
+
+// gives resolution of gene based on bit
+double gene::getResolution(){
+    code.assign(code.size(),false);
+    code.front() = true;
+    return returnValAndrefresh();
+
+}// provide me with the resolution
+
+
+string gene::getResolutionInBits(){
+    //encode(getResolution(),true);
+    code.assign(code.size(),false); //0.00879765
+    code.front() = true;//calling get resolution will give rounding errors
+    tempstr = makeString();
+    refreshToOldState();
+    return tempstr;
+}
+
+// self descriptive
+double gene::getMaxValue(){
+    code.assign(code.size(),true);
+    return returnValAndrefresh();
+}
+
+string gene::getMaxValueInBits(){
+    encode(maxValue,true);
+    tempstr = makeString();
+    forceDecode();
+    refreshToOldState();
+    return tempstr;
+
+}
+
+// self descriptive
+double gene::getMinValue(){
+    code.assign(code.size(),false);
+    return returnValAndrefresh();
+}
+
+string gene::getMinValueInBits(){
+    encode(minValue,true);
+    tempstr = makeString();
+    forceDecode();
+    refreshToOldState();
+    return tempstr;
+}
+
 string gene::makeString()
 {
-    string codeString = "";
+    codeString = "";
     for (unsigned int i=0; i<length; i++)
     {
         if (code[i])

@@ -19,7 +19,7 @@
 struct geneTest : public testing::Test{
     gene* Gene;
     geneTest(){
-        Gene = new gene(10.,0.,9.);
+        Gene = new gene(10,0.,9.);
     }
     
     virtual ~geneTest(){
@@ -28,21 +28,29 @@ struct geneTest : public testing::Test{
 };
 
 TEST_F(geneTest,decode){
-    const double three=3.;
+    const double three=0.5;
     Gene->setValue(three);
     EXPECT_EQ(10,Gene->code.size());
-    EXPECT_NEAR(3.,Gene->getValue(),0.1);
+    EXPECT_NEAR(0.5,Gene->getValue(),0.1);
     
 }
 
 TEST_F(geneTest,falsestrings){
-    const double three=3.;
+    const double three=0.5;
     Gene->setValue(three);
     EXPECT_EQ(10,Gene->code.size());
     EXPECT_STRNE(NULL,Gene->makeString().c_str());
     
 }
 
+TEST_F(geneTest,BoundaryValues){
+    const double four=8.;
+    Gene->setValue(four);
+    EXPECT_EQ(0.,Gene->getMinValue());
+    EXPECT_EQ(9.,Gene->getMaxValue());
+    EXPECT_NEAR(9./(pow(2.,10)-1),Gene->getResolution(),0.001);
+    
+}
 
 
 #endif /* test_gene_h */

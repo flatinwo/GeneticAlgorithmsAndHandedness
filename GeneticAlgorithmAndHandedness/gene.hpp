@@ -16,8 +16,18 @@
 
 using namespace std;
 
+// to do implement resolution
+// implement info
+
 class gene
 {
+    
+    struct gene_info{
+        string codeString;
+        double value;
+        vector<bool> code;
+    };
+    
 private:
     unsigned int length; // length of the code, >1
     double maxIntValue; // maximum integer value the gene can take using binary code
@@ -25,10 +35,18 @@ private:
     double maxValue; // maximum real vlaue the gene should take
     double value; // real value
     bool decoded; // flag that indicates whether decoded value has been stored or not
+    string codeString;
+    string tempstr;
+    
+    gene_info gval; // stores value of genes
+    double returnValAndrefresh();
+    
     
     void initGene(unsigned int _length, double _minValue, double _maxValue);
-    void decode();
-    void encode(double _value);
+    void decode(bool diagnoze=false);
+    void encode(double _value, bool diagnoze=false);
+    void refreshToOldState();
+    
 public:
     vector<bool> code; // this is the actual code, consisting of 0s and 1s
     
@@ -51,6 +69,14 @@ public:
     
     // return code as a string
     string makeString();
+    
+    double getResolution(); // provide me with the resolution
+    double getMaxValue();
+    double getMinValue();
+    
+    string getResolutionInBits();
+    string getMaxValueInBits();
+    string getMinValueInBits();
 };
 
 #endif /* gene_hpp */

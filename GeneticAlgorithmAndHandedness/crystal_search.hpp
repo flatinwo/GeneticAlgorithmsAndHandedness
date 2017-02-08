@@ -72,7 +72,7 @@ struct configs_t{
         assert(s_flag);
         assert(combns.size() < MYCOMBMAX);
         
-        unsigned int cbit = pow(2,combns.size()-1);
+        unsigned int cbit = pow(2,combns.size()+1);
         for (auto const &n : combns) assert(n.size() < maxmolecules);
         
         initGenes.pop_back();
