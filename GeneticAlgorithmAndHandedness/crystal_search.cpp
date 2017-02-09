@@ -10,6 +10,9 @@
 #include <algorithm>
 #include "operators.hpp"
 
+#define ESPILON 0.0001
+#define ONEMINUSEPSILON 0.9999
+
 CrystalSearch::CrystalSearch(){
     _myconfig = nullptr;
     _initialize();
@@ -318,8 +321,8 @@ void CrystalSearch::_setUp(individual* ind, bool rotate_flag){
     //update molecules (use a flag here)
     //maybe allow 
     if (rotate_flag){
-        int combit = (int) (_myconfig->ncombinations)*(_genes->back().getValue());
-        
+        int combit = (int) (ONEMINUSEPSILON*(_myconfig->ncombinations)*(_genes->back().getValue()));
+        //test the distribution of sampling, cheat to ensure range is correctly sampled
         assert(combit < _myconfig->combinations.size());
         assert(_quat.size() >= _myconfig->combinations[combit].size());
         _mymolecules.resize(_myconfig->combinations[combit].size()); //maybe do this differently

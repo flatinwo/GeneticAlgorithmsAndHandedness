@@ -120,6 +120,7 @@ void TestNmolecule2(double density=0.24, double alpha=0.5,
     
     twomolsearch.setLambda(alpha);
     twomolsearch.setTypeMap(typemap);
+    twomolsearch.writeXYZ(2.0);
     std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
     
     
