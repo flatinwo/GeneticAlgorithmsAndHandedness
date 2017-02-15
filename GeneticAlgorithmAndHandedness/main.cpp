@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     if (! (argc == 4 || argc == 5 || argc == 6)){
-        std::cout << "Usage: " << argv[0] << " option (0, 1, 2, or 3) density alpha [n_iterations=2000  popCount=5000]\n";
+        std::cout << "Usage: " << argv[0] << " option (0, 1, 2, 3, or 4) density alpha [n_iterations=2000  popCount=5000]\n";
         exit(-2);
     }
    
@@ -51,6 +51,9 @@ int main(int argc, const char * argv[]) {
             break;
         case 3:
             TestNmolecule4R(density, alpha,n_iterations,popCount);
+            break;
+        case 4:
+            TestNmolecule2E(density, alpha,n_iterations,popCount);
             break;
         default:
             std::cerr << "Unknown choice for switch option\n";

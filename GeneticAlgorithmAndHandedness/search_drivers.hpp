@@ -20,6 +20,10 @@ void TestNmolecule2(double density, double alpha,
 void TestNmolecule2R(double density, double alpha,
                     int iterations, int popCount);
 
+void TestNmolecule2E(double density, double alpha,
+                     int iterations, int popCount);
+
+
 void TestNmolecule4R(double density, double alpha,
                      int iterations, int popCount);
 

@@ -71,6 +71,8 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
 
 
 
+
+
 void TestNmolecule2(double density=0.24, double alpha=0.5,
                     int iterations=2000, int popCount=5000){
     const int nmol = 2;
@@ -131,6 +133,76 @@ void TestNmolecule2(double density=0.24, double alpha=0.5,
     
     
 }
+
+void TestNmolecule2E(double density=0.24, double alpha=0.5,
+                     int iterations=2000, int popCount=5000){
+    const int nmol = 2;
+    
+    std::vector<molecule> twomolecules(nmol);
+    twomolecules[0].second = "N";
+    twomolecules[1].second = "N";
+    
+    std::vector<double3> refTetramer(4);
+    refTetramer[0] = double3(-0.52915050, -0.79372575,  0.26457525);
+    refTetramer[1] = double3(-0.52915050,  0.26457525,  0.26457525);
+    refTetramer[2] = double3( 0.52915050,  0.26457525,  0.26457525);
+    refTetramer[3] = double3( 0.52915050,  0.26457525, -0.79372575);
+    
+    
+    
+    twomolecules[0].first = twomolecules[1].first = refTetramer;
+
+    
+    std::vector< std::vector<std::string> > combns(1, std::vector<std::string>(2)); //can implement case for switching number of basis pts.
+    combns[0][0] = "N"; combns[0][1] = "N";
+    //combns[1][0] = "N"; combns[1][1] = "O";
+    
+    std::map<std::string,unsigned short> typemap;
+    typemap["N"] = 0; typemap["O"] = 1;
+    
+    
+    configs_t search_instr(nmol); //search instructions (2 molecules per search)
+    search_instr.setMolecules(twomolecules);
+    search_instr.chiralitymap["N"] =  1.0;
+    //search_instr.chiralitymap["O"] =  -1.0;
+    search_instr.setCombinations(combns);
+    search_instr.iterations = iterations;
+    search_instr.populationCount=popCount;
+    
+    CrystalSearch twomolsearch(search_instr);
+    twomolsearch.setDensity(density);
+    twomolsearch.setTypeMap(typemap);
+    
+    //std::vector<double> myGenes({0.500023,	0.750408,	1.37391,	0.49233,	0.585289,	0.822215,	0.864837,	0.629519,	-0.00186597,	0.962939,	-0.764922, -0.625887,	0.50115,	0.0719044,	-0.998391, -0.20599,	0.560162});
+    
+    //std::vector<double> myGenes({1.,	1.,	PI/2,	0.,	PI/2,	0.2436425,	-0.7676525,	-0.3081525,	1.,	.0,	0., 0.,	1.,	.0,	0., 0.,	0.1});
+    
+    /*std::vector<double> myGenes({ 0.497024,	0.928539,	0.676501,	0.556789,	0.882762,	-0.374863,	-0.375708,	0.685241,	0.796704,	0.148485,	0.755849,	-0.218731,	0.561221,	-0.438728,	-0.647232,	-0.584263,	0.753198});*/
+    
+    
+    /*std::vector<double> overrideGenes(17,0.);
+     overrideGenes[ 0]=1.0;overrideGenes[ 1]=1.0;overrideGenes[ 2]=PI/2;overrideGenes[ 3]=0.0;overrideGenes[ 4]=PI/2;
+     overrideGenes[ 5]=0.22;overrideGenes[ 6]=0.3;overrideGenes[ 7]=0.3 ;
+     overrideGenes[ 8]=1.0;overrideGenes[ 9]=0.0;overrideGenes[10]=0.0;overrideGenes[11]=0.0;
+     overrideGenes[12]=1.0;overrideGenes[13]=0.0;overrideGenes[14]=0.0;overrideGenes[15]=0.0;
+     overrideGenes[16]=0.6;*/
+    
+    
+    //twomolsearch.overrideGeneration(myGenes);
+    twomolsearch.setLambda(alpha);
+    
+    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
+    twomolsearch.writeXYZ(2.0);
+    
+    
+    twomolsearch.run();
+    
+    twomolsearch.writeXYZ(2.0);
+    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
+    
+    
+}
+
 
 
 void TestNmolecule2R(double density=0.24, double alpha=0.5,
