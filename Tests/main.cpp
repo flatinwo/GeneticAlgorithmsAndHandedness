@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "gtest/gtest.h"
+#include "test_crystal_search.h"
 #include "test_gene.h"
 #include "gene.hpp"
 

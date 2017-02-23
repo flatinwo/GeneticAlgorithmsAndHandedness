@@ -47,6 +47,9 @@ private:
     void encode(double _value, bool diagnoze=false);
     void refreshToOldState();
     
+protected:
+    void updateLength(unsigned int);
+    
 public:
     vector<bool> code; // this is the actual code, consisting of 0s and 1s
     
@@ -56,6 +59,13 @@ public:
     
     // get and set functions
     double getValue();
+    double getResolution(); // provide me with the resolution
+    double getMaxValue();
+    double getMinValue();
+    string getResolutionInBits();
+    string getMaxValueInBits();
+    string getMinValueInBits();
+    
     bool setValue(double);
     
     // force decode by setting decoded=false
@@ -67,16 +77,13 @@ public:
     // flip parts of genetic code
     void flip(double _pFlip);
     
+    //update bittage
+    void updateBittage(unsigned int);
+    
     // return code as a string
     string makeString();
     
-    double getResolution(); // provide me with the resolution
-    double getMaxValue();
-    double getMinValue();
-    
-    string getResolutionInBits();
-    string getMaxValueInBits();
-    string getMinValueInBits();
+
 };
 
 #endif /* gene_hpp */

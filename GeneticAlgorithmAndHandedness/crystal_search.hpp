@@ -93,6 +93,7 @@ struct configs_t{
 };
 
 class CrystalSearch{
+    friend class CrystalSearchTest_updateBittage_Test;
 public:
     CrystalSearch();
     CrystalSearch(std::string);
@@ -110,6 +111,8 @@ public:
     void setDensity(double);
     void setTypeMap(const std::map<std::string, unsigned short>&);
     void setLambda(double=0.);
+    
+    void updateBittage(unsigned int);
     
     
 protected:

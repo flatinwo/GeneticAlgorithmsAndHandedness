@@ -22,6 +22,21 @@ gene::gene(unsigned int _length, double _value, double _minValue, double _maxVal
 
 void gene::initGene(unsigned int _length, double _minValue, double _maxValue)
 {
+
+    updateLength(_length);
+    minValue = _minValue;
+    maxValue = _maxValue;
+    code.assign(length, 0);
+    
+    // determine number of different values, the code can hold
+    maxIntValue = 0;
+    for (unsigned int i=0; i<length; i++)
+    {
+        maxIntValue += 1 << i;
+    }
+}
+
+void gene::updateLength(unsigned int _length){
     if ((_length > 0) && (_length < 32))
     {
         length = _length;
@@ -36,17 +51,12 @@ void gene::initGene(unsigned int _length, double _minValue, double _maxValue)
         length = 1;
         cerr<<"Warning: Minimum length per gene is 1"<<endl;
     }
-    
-    minValue = _minValue;
-    maxValue = _maxValue;
-    code.assign(length, 0);
-    
-    // determine number of different values, the code can hold
-    maxIntValue = 0;
-    for (unsigned int i=0; i<length; i++)
-    {
-        maxIntValue += 1 << i;
-    }
+}
+
+void gene::updateBittage(unsigned int _length){
+    double curr_val = value;
+    initGene(_length, minValue, maxValue);
+    encode(curr_val);
 }
 
 // decode binary code to a value in the range [minValue,maxValue] with stepsize 1/maxIntValue
@@ -129,6 +139,7 @@ void gene::refreshToOldState(){
     codeString = gval.codeString;
     value = gval.value;
 }
+
 
 void gene::randomize()
 {

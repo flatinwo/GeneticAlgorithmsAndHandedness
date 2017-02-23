@@ -48,7 +48,23 @@ TEST_F(geneTest,BoundaryValues){
     Gene->setValue(four);
     EXPECT_EQ(0.,Gene->getMinValue());
     EXPECT_EQ(9.,Gene->getMaxValue());
-    EXPECT_NEAR(9./(pow(2.,10)-1),Gene->getResolution(),0.001);
+    EXPECT_NEAR(9./(pow(2.,10)),Gene->getResolution(),0.001);
+    
+}
+
+TEST_F(geneTest,UpdateBittage){
+    const double four=8.;
+    Gene->setValue(four);
+    EXPECT_NEAR(9./(pow(2.,10)),Gene->getResolution(),0.001);
+    EXPECT_NEAR(8.,Gene->getValue(), Gene->getResolution());
+    
+    double value = Gene->getValue();
+    unsigned int newbit=31;
+    Gene->updateBittage(newbit);
+    EXPECT_EQ(newbit,Gene->code.size());
+    EXPECT_NEAR(9./(pow(2.,newbit)),Gene->getResolution(),0.001);
+    EXPECT_NEAR(value, Gene->getValue(), Gene->getResolution());
+    
     
 }
 
