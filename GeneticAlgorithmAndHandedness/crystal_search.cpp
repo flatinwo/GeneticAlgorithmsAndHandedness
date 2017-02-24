@@ -61,16 +61,13 @@ void CrystalSearch::overrideGeneration(std::vector<double>& iGenes){
     
 }
 
+//note changing myconfig genes so as to have memory of initial bittage.
 void CrystalSearch::updateBittage(unsigned int length){
     for (unsigned int i=0; i < _generation->individuals.size(); i++)
         for_each(_generation->individuals[i].genes.begin(),
                  _generation->individuals[i].genes.end()-1,
                  [length](gene& m){ m.updateBittage(length);}); //exclude orientation.
     
-    
-    for_each(_myconfig->initGenes.begin(),
-             _myconfig->initGenes.end()-1,
-             [length](gene& m){m.updateBittage(length);});
     
 }
 void CrystalSearch::setTypeMap(const std::map<std::string, unsigned short>& tmap){

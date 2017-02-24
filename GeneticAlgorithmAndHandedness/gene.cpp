@@ -54,7 +54,7 @@ void gene::updateLength(unsigned int _length){
 }
 
 void gene::updateBittage(unsigned int _length){
-    double curr_val = value;
+    double curr_val = getValue();
     initGene(_length, minValue, maxValue);
     encode(curr_val);
 }

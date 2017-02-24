@@ -14,10 +14,12 @@
 #include "gtest/gtest.h"
 #include "GenAlgoAndHands.h"
 
+//write test for x and y
+
 struct CrystalSearchTest : public testing::Test{
     CrystalSearch* search;
     int iterations=20;
-    int popCount=20;
+    int popCount=10;
     double density=0.2;
     CrystalSearchTest(){
         const int nmol = 2;
@@ -94,6 +96,22 @@ TEST_F(CrystalSearchTest,updateBittage){
 }
 
 TEST_F(CrystalSearchTest,updateBittageValue){
+    generation old = *(search->_generation);
+  
+    search->updateBittage(22);
+    
+   
+    for (int i=0 ; i<popCount; i++){
+        genes* gn = &(search->_generation->individuals[i].genes);
+        int m=0;
+        for (std::vector<gene>::iterator it = gn->begin();
+             it != gn->end();  it++){
+            EXPECT_NEAR(old.individuals[i].genes[m++].getValue(),
+                        it->getValue(),0.0001);
+        }
+        
+        
+    }
     
 }
 

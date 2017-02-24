@@ -94,6 +94,7 @@ struct configs_t{
 
 class CrystalSearch{
     friend class CrystalSearchTest_updateBittage_Test;
+    friend class CrystalSearchTest_updateBittageValue_Test;
 public:
     CrystalSearch();
     CrystalSearch(std::string);
