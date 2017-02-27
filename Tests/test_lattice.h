@@ -39,7 +39,9 @@ struct LatticeTest: public testing::Test{
 
 TEST_F(LatticeTest, densityOrhoTest){
     
-    mylattice->updateVectors(0.8, 0.7, PI/2, 0.3*PI, PI/2.);
+    
+    
+    mylattice->updateVectors(0.8, 0.7, PI/2, PI, PI/2.);
     for (std::list<double>::iterator it=densities->begin(); it != densities->end(); it++){
         mylattice->setDensity(*it);
         double expected_x = (mylattice->getLatticeVector(1).getLength())/
@@ -52,6 +54,25 @@ TEST_F(LatticeTest, densityOrhoTest){
                     (mylattice->getX())*(mylattice->getY())
                     ,0.0001);
 
+        
+    }
+}
+
+TEST_F(LatticeTest, densityMonoTest){
+    
+    mylattice->updateVectors(0.8, 0.7, PI/2, 0.1, PI/2.);
+    for (std::list<double>::iterator it=densities->begin(); it != densities->end(); it++){
+        mylattice->setDensity(*it);
+        double expected_x = (mylattice->getLatticeVector(1).getLength())/
+        (mylattice->getLatticeVector(0).getLength());
+        double expected_xy =(mylattice->getLatticeVector(2).getLength())/
+        (mylattice->getLatticeVector(0).getLength());
+        
+        EXPECT_NEAR(expected_x,mylattice->getX(),0.0001);
+        EXPECT_NEAR(expected_xy,
+                    (mylattice->getX())*(mylattice->getY())
+                    ,0.0001);
+        
         
     }
 }
