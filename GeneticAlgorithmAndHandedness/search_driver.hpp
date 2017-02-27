@@ -16,6 +16,7 @@
 class SearchDriver{
 public:
     enum SEARCHTYPE { ENANTIOPURE=0, RACEMIC=1, RACEMIZING=2};
+    enum BITTYPE {RANDOMSWEEP=0, FIXEDSWEEP=1, NOSWEEP=2};
     
     virtual void run();
     

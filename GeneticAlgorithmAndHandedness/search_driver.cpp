@@ -8,7 +8,7 @@
 
 #include "search_driver.hpp"
 
-class SearchDriver{
+/*class SearchDriver{
 public:
     void run();
     
@@ -17,4 +17,4 @@ protected:
     
 private:
     
-};
+};*/

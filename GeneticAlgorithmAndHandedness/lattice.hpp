@@ -66,6 +66,12 @@ public:
     double getArea(double3, double3, double3);
     double3 getLatticeVector(unsigned int);
     void setDensity(double);
+    
+    double getX(){ return x;};
+    double getY(){ return y;};
+    double getPhi(){return phi;};
+    double getPsi(){return psi;};
+    double getTheta(){return theta;};
 };
 
 #endif /* lattice_hpp */
