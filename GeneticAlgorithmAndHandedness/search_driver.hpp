@@ -32,9 +32,9 @@ public:
     void setBitType(BITTYPE);
     void setIterations(unsigned int);
     void setPopulationCount(unsigned int);
-    void setDensity(double);
-    void setTypeMap(std::map<std::string, unsigned short>&);
-    void setNumberOfMolecules(int);
+    //void setDensity(double);
+    //void setTypeMap(std::map<std::string, unsigned short>&);
+    //void setNumberOfMolecules(int);
     
     void overrideGenes(std::vector<double>&);
     
