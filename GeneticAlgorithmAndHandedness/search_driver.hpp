@@ -15,12 +15,21 @@
 
 class SearchDriver{
 public:
+    
     enum SEARCHTYPE { ENANTIOPURE=0, RACEMIC=1, RACEMIZING=2};
     enum BITTYPE {RANDOMSWEEP=0, FIXEDSWEEP=1, NOSWEEP=2};
+    
+    SearchDriver(short, SEARCHTYPE,
+                 BITTYPE,
+                 double density,
+                 double lambda,
+                 int popCount,
+                 int iterations);
     
     virtual void run();
     
     void setSearchType(SEARCHTYPE);
+    void setBitType(BITTYPE);
     void setIterations(unsigned int);
     void setPopulationCount(unsigned int);
     void setDensity(double);
@@ -33,11 +42,13 @@ public:
 private:
 
 protected:
-    std::vector<molecule> _vector_list;
-    configs_t _search_instr;
+    std::vector<molecule> _molecule_list;
+    configs_t* _search_instr;
     std::map<std::string, unsigned short> _typemap;
     std::vector< std::vector<std::string> > _combinations;
     CrystalSearch* _search;
+    SEARCHTYPE Smode;
+    BITTYPE Bmode;
     
     double _density;
     double _lambda;
