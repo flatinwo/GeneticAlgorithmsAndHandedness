@@ -15,14 +15,17 @@
 #include <random>
 
 struct randomstore{
-    std::random_device rd;  //Will be used to obtain a seed for the random number engine
-    std::mt19937 gen; //Standard mersenne_twister_engine seeded with rd()
-    std::uniform_int_distribution<>* dis;
     
-    randomstore(int a, int b){
-        dis =  new std::uniform_int_distribution<>(a,b);
+    unsigned min, max;
+    randomstore(unsigned int a=2, unsigned int b=10):min(a),max(b){
     }
     
+    unsigned generate(){
+        return std::uniform_int_distribution<unsigned>{min,max}(eng);
+    }    
+    
+private:
+    std::mt19937 eng{std::random_device{}()};
 };
 
 class SearchDriver{
@@ -36,10 +39,15 @@ public:
                  double density,
                  double lambda,
                  int popCount,
-                 int iterations);
+                 int iterations,
+                 int bitmin,
+                 int bitmax);
     
-    virtual void run(){return;};
+    ~SearchDriver();
     
+    virtual void run();
+    
+    void setSeed(unsigned seed);
     void setBitType(BITTYPE);
     void updateBittage(unsigned int);
     void setIterationSweep(unsigned int);
@@ -59,15 +67,18 @@ protected:
     CrystalSearch* _search;
     SEARCHTYPE Smode;
     BITTYPE Bmode;
+    randomstore* _rdinfo;
     
     double _density;
     double _lambda;
     unsigned int _iterations;
     unsigned int _popCount;
+    unsigned int _nsweeps;
     
     unsigned int _maxbit;
     unsigned int _minbit;
     unsigned int _deltabit;
+
     
     virtual void _initialize();
     

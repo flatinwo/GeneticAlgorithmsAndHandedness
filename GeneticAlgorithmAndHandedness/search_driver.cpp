@@ -9,26 +9,65 @@
 #include "search_driver.hpp"
 #include "molecules.h"
 
+static std::random_device rd;  //Will be used to obtain a seed for the random number engine
+static std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+
 SearchDriver::SearchDriver(short nmol,
                            SEARCHTYPE st = ENANTIOPURE,
                            BITTYPE bt = RANDOMSWEEP,
                            double density= 0.24,
                            double lambda = 0.5,
                            int popCount= 10000,
-                          int iterations= 10000):
+                           int iterations= 10000,
+                           int bitmin=7,
+                           int bitmax=31):
 _nmol(nmol),Smode(st),Bmode(bt),_density(density),
-_lambda(lambda),_popCount(popCount),_iterations(iterations)
+_lambda(lambda),_popCount(popCount),_iterations(iterations),
+_minbit(bitmin),_maxbit(bitmax)
 {
+    _search = nullptr;
+    _search_instr = nullptr;
+    _nsweeps=12;
     _initialize();
 }
 
+SearchDriver::~SearchDriver(){
+    delete _search;
+    delete _search_instr;
+    if (_rdinfo != nullptr) delete _rdinfo;
+}
+
+void SearchDriver::setSeed(unsigned seed){
+    assert(_rdinfo != nullptr);
+    assert(0);
+    
+}
+
+void SearchDriver::run(){
+    std::string str1("final_lattice_bit_");
+    std::string str2(".xyz");
+    std::string fname("");
+    _search->writeXYZ(2.0,"initial_lattice.xyz");
+    for (unsigned int i=0; i<_nsweeps;i++){
+        _search->run();
+        if (Bmode == RANDOMSWEEP) _search->updateBittage(_rdinfo->generate());
+        else if (Bmode == FIXEDSWEEP) _search->updateBittage(_minbit + i*_deltabit);
+        fname = str1 + std::to_string(_search->getBittage())+ str2;
+        _search->writeXYZ(2.0,fname.c_str());
+        std::cout << "Lattice energy is: " << _search->getLatticeEnergy() << "\n";
+    }
+    
+}
+
+void SearchDriver::setIterationSweep(unsigned int sweeps ){
+    _nsweeps = sweeps;
+}
 
 void SearchDriver::_initialize(){
-
-    _maxbit = 31;
-    _minbit = 7;
     _deltabit = 2;
+    if (Bmode == RANDOMSWEEP) _rdinfo = new randomstore(_minbit,_maxbit);
 
+    
     _molecule_list.reserve(_nmol);
     
     if (Smode == ENANTIOPURE){
@@ -89,8 +128,14 @@ void SearchDriver::setBitType(BITTYPE bt){
 }
 
 void SearchDriver::updateBittage(unsigned int bg){
-    assert(bg <= 31);
+    assert(bg <= 31 || bg >= 2);
     _search->updateBittage(bg);
+    if (_rdinfo){
+        if (bg >= _maxbit) _maxbit = bg;
+        else _minbit = bg;
+        _rdinfo->max = _maxbit;
+        _rdinfo->min = _minbit;
+    }
 }
 
 

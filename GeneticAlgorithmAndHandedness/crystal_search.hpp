@@ -114,11 +114,15 @@ public:
     void setLambda(double=0.);
     
     void updateBittage(unsigned int);
+    unsigned getBittage();
+    
+    void resetIterationLog(){_itlog = 0;};
     
     
 protected:
     double _density;
     double _lambda;
+    long _itlog;
     unsigned int _gencount;
     generation* _generation;
     const configs_t*  _myconfig;

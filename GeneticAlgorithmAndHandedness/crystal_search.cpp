@@ -49,8 +49,8 @@ void CrystalSearch::overrideGeneration(){
     
 }
 
-void CrystalSearch::writeXYZ(double myrcut){
-    _writeXYZ(myrcut);
+void CrystalSearch::writeXYZ(double myrcut,const char* filename){
+    _writeXYZ(myrcut,filename);
 }
 
 void CrystalSearch::overrideGeneration(std::vector<double>& iGenes){
@@ -69,6 +69,10 @@ void CrystalSearch::updateBittage(unsigned int length){
                  [length](gene& m){ m.updateBittage(length);}); //exclude orientation.
     
     
+}
+
+unsigned CrystalSearch::getBittage(){
+    return (unsigned)_generation->individuals[0].genes[0].code.size();
 }
 void CrystalSearch::setTypeMap(const std::map<std::string, unsigned short>& tmap){
     _typemap = tmap;
@@ -200,9 +204,13 @@ void CrystalSearch::run(){
         _generation->sortByFitness();
         
         //output generation
-        *fitInfo << t << "\t" << _generation->individuals[0].fitness << "\n";
-        std::cout << t << "\t" << _generation->individuals[0].fitness << "\n";
+        *fitInfo << _itlog << "\t" << _generation->individuals[0].fitness <<
+        "\t" << _generation->individuals[0].genes[0].code.size() << "\n";
+        
+        std::cout << _itlog << "\t" << _generation->individuals[0].fitness<<
+        "\t" << _generation->individuals[0].genes[0].code.size()<< "\n";
         _setUp(&(_generation->individuals[0]),true);
+        
         std::cout << "Fate: ";
         for (auto& a : _mymolecules) std::cout << a.second << "\t";
         std::cout << "\n";
@@ -213,16 +221,17 @@ void CrystalSearch::run(){
         _generation->mutate(1.0, 0.05); //set parameters
         
         _gencount++;
+        _itlog++;
     }
     
     _computeGenerationFitness();
     _generation->sortByFitness();
     
     std::cout << "Best fitness (after hill-search) is " << _computeFitness(_generation->individuals[0]) << "\n";
-    _writeXYZ();
+   // _writeXYZ();
 }
 
-void CrystalSearch::_writeXYZ(double myrCut){
+void CrystalSearch::_writeXYZ(double myrCut, const char* filename){
     _setUp(&(_generation->individuals[0]),true);
     
     double a1l, a2l, a3l;
@@ -235,13 +244,13 @@ void CrystalSearch::_writeXYZ(double myrCut){
     const int kMax = ceil(myrCut/a3l) + 1;
     
     
-    std::ofstream myinfo("box_config.dat");
+    std::ofstream myinfo("box_config.dat", std::ios_base::app | std::ios_base::out);
     //myinfo << "Box info for python script\n";
     myinfo << (2*iMax+1)*_a1.x << "\t" << (2*jMax+1)*_a2.x << "\t" << (2*jMax+1)*_a2.y << "\t"
     << (2*kMax+1)*_a3.x << "\t" << (2*kMax+1)*_a3.y << "\t" << (2*kMax+1)*_a3.z << "\n";
     myinfo.close();
     
-    std::ofstream myxyz("lattice.xyz");
+    std::ofstream myxyz(filename);
     myxyz << ((2*iMax + 1)*(2*jMax + 1 )*(2*kMax + 1)*_mymolecules.size())*_mymolecules.begin()->first.size() << "\n\n"; //assumes all molecules are the same size... it might make sense to have a counter here
     int ncount=0;
     for (int i=-iMax; i<= iMax; i++){

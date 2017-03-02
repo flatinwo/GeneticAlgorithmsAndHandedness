@@ -53,6 +53,7 @@ protected:
 public:
     vector<bool> code; // this is the actual code, consisting of 0s and 1s
     
+    
     // constructors
     gene(unsigned int _length, double _minValue, double _maxValue);
     gene(unsigned int _length, double _value, double _minValue, double _maxValue);

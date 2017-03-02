@@ -18,6 +18,7 @@
 // I want to write a test to see if x, y, and angles follow
 // rule, basically randomize lattice vector and then check to see if tests
 //.
+//test random number generator
 
 typedef lattice Lattice;
 
