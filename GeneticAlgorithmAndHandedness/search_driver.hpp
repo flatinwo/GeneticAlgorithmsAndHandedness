@@ -12,6 +12,18 @@
 #include <stdio.h>
 #include "crystal_search.hpp"
 #include <vector>
+#include <random>
+
+struct randomstore{
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen; //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<>* dis;
+    
+    randomstore(int a, int b){
+        dis =  new std::uniform_int_distribution<>(a,b);
+    }
+    
+};
 
 class SearchDriver{
 public:
@@ -26,15 +38,12 @@ public:
                  int popCount,
                  int iterations);
     
-    virtual void run();
+    virtual void run(){return;};
     
-    void setSearchType(SEARCHTYPE);
     void setBitType(BITTYPE);
-    void setIterations(unsigned int);
-    void setPopulationCount(unsigned int);
-    //void setDensity(double);
-    //void setTypeMap(std::map<std::string, unsigned short>&);
-    //void setNumberOfMolecules(int);
+    void updateBittage(unsigned int);
+    void setIterationSweep(unsigned int);
+ 
     
     void overrideGenes(std::vector<double>&);
     
@@ -42,6 +51,7 @@ public:
 private:
 
 protected:
+    const int _nmol;
     std::vector<molecule> _molecule_list;
     configs_t* _search_instr;
     std::map<std::string, unsigned short> _typemap;

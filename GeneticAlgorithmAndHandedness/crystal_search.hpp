@@ -101,7 +101,7 @@ public:
     CrystalSearch(configs_t&);
     ~CrystalSearch();
     
-    void writeXYZ(double=0.);
+    void writeXYZ(double=0.,const char* filename="lattice.xyz");
     void run();
     double getLatticeEnergy();
     
@@ -147,7 +147,7 @@ protected:
     void _openFiles();
     void _closeFiles();
     void _printIndividual(unsigned int);
-    void _writeXYZ(double=0.);
+    void _writeXYZ(double=0., const char* filename="lattice.xyz");
     
     double _computeFitness(individual&, bool returnEnergy=false); // is static function inherited
     void _computeGenerationFitness();

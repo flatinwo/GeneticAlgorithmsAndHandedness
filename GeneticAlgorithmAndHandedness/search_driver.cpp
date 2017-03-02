@@ -9,34 +9,69 @@
 #include "search_driver.hpp"
 #include "molecules.h"
 
+SearchDriver::SearchDriver(short nmol,
+                           SEARCHTYPE st = ENANTIOPURE,
+                           BITTYPE bt = RANDOMSWEEP,
+                           double density= 0.24,
+                           double lambda = 0.5,
+                           int popCount= 10000,
+                          int iterations= 10000):
+_nmol(nmol),Smode(st),Bmode(bt),_density(density),
+_lambda(lambda),_popCount(popCount),_iterations(iterations)
+{
+    _initialize();
+}
+
+
 void SearchDriver::_initialize(){
-    _density = 0.24;
-    _lambda = 0.50;
+
     _maxbit = 31;
     _minbit = 7;
     _deltabit = 2;
-    _iterations = 10000;
-    _popCount = 10000;
+
+    _molecule_list.reserve(_nmol);
     
-    _molecule_list.reserve(2);
-    _molecule_list[0].second="N";
-    _molecule_list[0].first = moleculestore.LTetramer;
+    if (Smode == ENANTIOPURE){
+        for (auto& m : _molecule_list){
+            m.second = "N";
+            m.first = moleculestore.LTetramer;
+        }
+        std::vector< std::vector<std::string> > combns(1, std::vector<std::string>(2));
+        combns[0][0] = "N"; combns[0][1] = "N";
+        _combinations = combns;
+        _typemap["N"] = 0;
+    }
+    else if (Smode == RACEMIC || Smode == RACEMIZING){
+        int i=0;
+        for (auto& m : _molecule_list){
+            if (i%2 == 0){
+                m.second = "N";
+                m.first = moleculestore.LTetramer;
+            }
+            else{
+                m.second = "O";
+                m.first = moleculestore.DTetramer;
+            }
+        }
+        std::vector< std::vector<std::string> > combns(1, std::vector<std::string>(2));
+        combns[0][0] = "N"; combns[0][1] = "O";
+        if (Smode == RACEMIZING){
+            combns.push_back(combns[0]);
+            combns[1][0] = "N"; combns[1][1] = "N";
+        }
+        _combinations = combns;
+        _typemap["N"] = 0;
+        _typemap["O"] = 1;
+    }
+    else{
+        std::cerr << "Unkown switch mode.\n";
+        exit(-1);
+    }
     
-    _molecule_list[1].second="O";
-    _molecule_list[1].first = moleculestore.DTetramer;
-    
-    
-    _combinations.reserve(2);
-    _combinations[0].push_back("N");_combinations[0].push_back("N");
-    _combinations[1].push_back("O");_combinations[1].push_back("O");
-    
-    _typemap["N"] = 0;
-    _typemap["O"] = 1;
-    
-    _search_instr = new configs_t(2);
+    _search_instr = new configs_t(_nmol);
     _search_instr->setMolecules(_molecule_list);
     _search_instr->chiralitymap["N"] =  1.0;
-    _search_instr->chiralitymap["O"] = -1.0;
+     if (Smode == RACEMIZING || Smode == RACEMIC) _search_instr->chiralitymap["O"] = -1.0;
     _search_instr->populationCount=_popCount;
     _search_instr->iterations=_iterations;
     
@@ -53,9 +88,11 @@ void SearchDriver::setBitType(BITTYPE bt){
     Bmode = bt;
 }
 
-void SearchDriver::setSearchType(SEARCHTYPE st){
-    Smode = st;
+void SearchDriver::updateBittage(unsigned int bg){
+    assert(bg <= 31);
+    _search->updateBittage(bg);
 }
+
 
 
 /*class SearchDriver{
