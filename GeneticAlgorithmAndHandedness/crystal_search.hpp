@@ -40,7 +40,7 @@ struct configs_t{
     std::map< std::string, double> chiralitymap;
     
     configs_t(int n=1, bool or_flag=true, bool sw_flag=true, unsigned int xbit=10):bit(xbit),o_flag(or_flag),s_flag(sw_flag){
-        molecules.reserve(n);
+        molecules.resize(n,molecule());
         maxmolecules = 1024;
         iterations = 500;
         

@@ -98,6 +98,7 @@ void CrystalSearch::_initialize(){
     _gencount = 0;
     _openFiles();
     _chiralitymap = _myconfig->chiralitymap;
+    _itlog = 0;
 }
 
 double CrystalSearch::getLatticeEnergy(){

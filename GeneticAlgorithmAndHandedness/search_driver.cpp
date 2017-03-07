@@ -68,7 +68,7 @@ void SearchDriver::_initialize(){
     if (Bmode == RANDOMSWEEP) _rdinfo = new randomstore(_minbit,_maxbit);
 
     
-    _molecule_list.reserve(_nmol);
+    _molecule_list.resize(_nmol,molecule());
     
     if (Smode == ENANTIOPURE){
         for (auto& m : _molecule_list){
@@ -77,6 +77,7 @@ void SearchDriver::_initialize(){
         }
         std::vector< std::vector<std::string> > combns(1, std::vector<std::string>(2));
         combns[0][0] = "N"; combns[0][1] = "N";
+        if (_molecule_list.size() == 1) combns[0].pop_back();
         _combinations = combns;
         _typemap["N"] = 0;
     }
@@ -91,6 +92,7 @@ void SearchDriver::_initialize(){
                 m.second = "O";
                 m.first = moleculestore.DTetramer;
             }
+            i++;
         }
         std::vector< std::vector<std::string> > combns(1, std::vector<std::string>(2));
         combns[0][0] = "N"; combns[0][1] = "O";
@@ -111,6 +113,7 @@ void SearchDriver::_initialize(){
     _search_instr->setMolecules(_molecule_list);
     _search_instr->chiralitymap["N"] =  1.0;
      if (Smode == RACEMIZING || Smode == RACEMIC) _search_instr->chiralitymap["O"] = -1.0;
+    _search_instr->setCombinations(_combinations);
     _search_instr->populationCount=_popCount;
     _search_instr->iterations=_iterations;
     

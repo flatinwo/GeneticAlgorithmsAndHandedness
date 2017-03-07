@@ -7,12 +7,25 @@
 //
 
 #include "search_drivers.hpp"
+#include "search_driver.hpp"
 #include "crystal_search.hpp"
 
 
 void TestNmolecule1(double density=0.24, double alpha=0.5,
                     int iterations=2000, int popCount=5000){
-    const int nmol = 1;
+    const short n=1;
+    SearchDriver onemol (n,
+                        SearchDriver::SEARCHTYPE::ENANTIOPURE,
+                        SearchDriver::BITTYPE::RANDOMSWEEP,
+                        density,
+                        alpha,
+                        popCount,
+                        iterations,
+                        7,
+                        31);
+    onemol.run();
+    
+    /*const int nmol = 1;
     
     std::vector<molecule> onemolecules(nmol);
     onemolecules[0].second = "N";
@@ -41,7 +54,7 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
     search_instr.iterations = iterations;
     
     CrystalSearch onemolsearch(search_instr);
-    onemolsearch.setDensity(density);
+    onemolsearch.setDensity(density);*/
     
     /*std::vector<double> overrideGenes(10,0.);
      overrideGenes[ 0]=1.0;overrideGenes[ 1]=1.0;overrideGenes[ 2]=PI/2;overrideGenes[ 3]=0.0;overrideGenes[ 4]=PI/2;
@@ -56,7 +69,7 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
      onemolsearch.overrideGeneration(overrideGenes);*/
     
     
-    onemolsearch.setLambda(alpha);
+    /*onemolsearch.setLambda(alpha);
     onemolsearch.setTypeMap(typemap);
     
     onemolsearch.writeXYZ(2.0);
@@ -65,7 +78,7 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
     onemolsearch.run();
     
     std::cout << "Lattice energy is: " << onemolsearch.getLatticeEnergy() << "\n";
-    onemolsearch.writeXYZ(2.0);
+    onemolsearch.writeXYZ(2.0);*/
     
 }
 
@@ -75,7 +88,24 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
 
 void TestNmolecule2(double density=0.24, double alpha=0.5,
                     int iterations=2000, int popCount=5000){
-    const int nmol = 2;
+   
+    
+    const short n=2;
+    SearchDriver twomol (n,
+                         SearchDriver::SEARCHTYPE::RACEMIZING,
+                         SearchDriver::BITTYPE::RANDOMSWEEP,
+                         density,
+                         alpha,
+                         popCount,
+                         iterations,
+                         7,
+                         31);
+    
+    twomol.run();
+    
+    
+    
+    /*const int nmol = 2;
     
     std::vector<molecule> twomolecules(nmol);
     twomolecules[0].second = "N";
@@ -109,7 +139,7 @@ void TestNmolecule2(double density=0.24, double alpha=0.5,
     
     CrystalSearch twomolsearch(search_instr);
     twomolsearch.setDensity(density);
-    
+    */
     /*std::vector<double> overrideGenes(17,0.);
      overrideGenes[ 0]=1.0;overrideGenes[ 1]=1.0;overrideGenes[ 2]=PI/2;overrideGenes[ 3]=0.0;overrideGenes[ 4]=PI/2;
      overrideGenes[ 5]=0.22;overrideGenes[ 6]=0.3;overrideGenes[ 7]=0.3 ;
@@ -118,7 +148,7 @@ void TestNmolecule2(double density=0.24, double alpha=0.5,
      overrideGenes[16]=0.6;*/
     
     //twomolsearch.overrideGeneration(overrideGenes);
-    
+    /*
     
     twomolsearch.setLambda(alpha);
     twomolsearch.setTypeMap(typemap);
@@ -129,16 +159,30 @@ void TestNmolecule2(double density=0.24, double alpha=0.5,
     twomolsearch.run();
     
     twomolsearch.writeXYZ(2.0);
-    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
+    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";*/
     
     
 }
 
 void TestNmolecule2E(double density=0.24, double alpha=0.5,
                      int iterations=2000, int popCount=5000){
-    const int nmol = 2;
     
-    std::vector<molecule> twomolecules(nmol);
+    const short n=2;
+    SearchDriver twomol (n,
+                         SearchDriver::SEARCHTYPE::ENANTIOPURE,
+                         SearchDriver::BITTYPE::RANDOMSWEEP,
+                         density,
+                         alpha,
+                         popCount,
+                         iterations,
+                         7,
+                         31);
+    
+    twomol.run();
+    
+    //const int nmol = 2;
+    
+    /*std::vector<molecule> twomolecules(nmol);
     twomolecules[0].second = "N";
     twomolecules[1].second = "N";
     
@@ -177,9 +221,10 @@ void TestNmolecule2E(double density=0.24, double alpha=0.5,
     
     //std::vector<double> myGenes({1.,	1.,	PI/2,	0.,	PI/2,	0.2436425,	-0.7676525,	-0.3081525,	1.,	.0,	0., 0.,	1.,	.0,	0., 0.,	0.1});
     
+     */
     /*std::vector<double> myGenes({ 0.497024,	0.928539,	0.676501,	0.556789,	0.882762,	-0.374863,	-0.375708,	0.685241,	0.796704,	0.148485,	0.755849,	-0.218731,	0.561221,	-0.438728,	-0.647232,	-0.584263,	0.753198});*/
     
-    
+
     /*std::vector<double> overrideGenes(17,0.);
      overrideGenes[ 0]=1.0;overrideGenes[ 1]=1.0;overrideGenes[ 2]=PI/2;overrideGenes[ 3]=0.0;overrideGenes[ 4]=PI/2;
      overrideGenes[ 5]=0.22;overrideGenes[ 6]=0.3;overrideGenes[ 7]=0.3 ;
@@ -189,7 +234,7 @@ void TestNmolecule2E(double density=0.24, double alpha=0.5,
     
     
     //twomolsearch.overrideGeneration(myGenes);
-    twomolsearch.setLambda(alpha);
+    /*twomolsearch.setLambda(alpha);
     
     std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
     twomolsearch.writeXYZ(2.0);
@@ -198,7 +243,7 @@ void TestNmolecule2E(double density=0.24, double alpha=0.5,
     twomolsearch.run();
     
     twomolsearch.writeXYZ(2.0);
-    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
+    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";*/
     
     
 }
@@ -207,7 +252,22 @@ void TestNmolecule2E(double density=0.24, double alpha=0.5,
 
 void TestNmolecule2R(double density=0.24, double alpha=0.5,
                      int iterations=2000, int popCount=5000){
-    const int nmol = 2;
+    
+    
+    const short n=2;
+    SearchDriver twomol (n,
+                         SearchDriver::SEARCHTYPE::RACEMIC,
+                         SearchDriver::BITTYPE::RANDOMSWEEP,
+                         density,
+                         alpha,
+                         popCount,
+                         iterations,
+                         7,
+                         31);
+    
+    twomol.run();
+    
+    /*const int nmol = 2;
     
     std::vector<molecule> twomolecules(nmol);
     twomolecules[0].second = "N";
@@ -251,13 +311,13 @@ void TestNmolecule2R(double density=0.24, double alpha=0.5,
     
     CrystalSearch twomolsearch(search_instr);
     twomolsearch.setDensity(density);
-    twomolsearch.setTypeMap(typemap);
+    twomolsearch.setTypeMap(typemap);*/
     
     //std::vector<double> myGenes({0.500023,	0.750408,	1.37391,	0.49233,	0.585289,	0.822215,	0.864837,	0.629519,	-0.00186597,	0.962939,	-0.764922, -0.625887,	0.50115,	0.0719044,	-0.998391, -0.20599,	0.560162});
     
     //std::vector<double> myGenes({1.,	1.,	PI/2,	0.,	PI/2,	0.2436425,	-0.7676525,	-0.3081525,	1.,	.0,	0., 0.,	1.,	.0,	0., 0.,	0.1});
     
-    std::vector<double> myGenes({ 0.497024,	0.928539,	0.676501,	0.556789,	0.882762,	-0.374863,	-0.375708,	0.685241,	0.796704,	0.148485,	0.755849,	-0.218731,	0.561221,	-0.438728,	-0.647232,	-0.584263,	0.753198});
+    /*std::vector<double> myGenes({ 0.497024,	0.928539,	0.676501,	0.556789,	0.882762,	-0.374863,	-0.375708,	0.685241,	0.796704,	0.148485,	0.755849,	-0.218731,	0.561221,	-0.438728,	-0.647232,	-0.584263,	0.753198});*/
     
     
     /*std::vector<double> overrideGenes(17,0.);
@@ -267,8 +327,8 @@ void TestNmolecule2R(double density=0.24, double alpha=0.5,
      overrideGenes[12]=1.0;overrideGenes[13]=0.0;overrideGenes[14]=0.0;overrideGenes[15]=0.0;
      overrideGenes[16]=0.6;*/
     
-    
-    twomolsearch.overrideGeneration(myGenes);
+    //Here I was overriding genes biased initial config
+    /*twomolsearch.overrideGeneration(myGenes);
     twomolsearch.setLambda(alpha);
     
     std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
@@ -278,14 +338,27 @@ void TestNmolecule2R(double density=0.24, double alpha=0.5,
     twomolsearch.run();
     
     twomolsearch.writeXYZ(2.0);
-    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";
+    std::cout << "Lattice energy is: " << twomolsearch.getLatticeEnergy() << "\n";*/
     
     
 }
 
 void TestNmolecule4R(double density=0.24, double alpha=0.5,
                      int iterations=2000, int popCount=5000){
-    const int nmol = 4;
+    return;
+    /*const short n=4;
+    SearchDriver fourmol (n,
+                         SearchDriver::SEARCHTYPE::RACEMIC,
+                         SearchDriver::BITTYPE::RANDOMSWEEP,
+                         density,
+                         alpha,
+                         popCount,
+                         iterations,
+                         7,
+                         31);
+    fourmol.run();*/
+    
+  /*  const int nmol = 4;
     
     std::vector<molecule> fourmolecules(nmol);
     fourmolecules[0].second = "N1";
@@ -323,6 +396,8 @@ void TestNmolecule4R(double density=0.24, double alpha=0.5,
     CrystalSearch fourmolsearch(search_instr);
     fourmolsearch.setDensity(density);
     fourmolsearch.setTypeMap(typemap);
+   
+   */
     
     //std::vector<double> myGenes({0.608201,	0.994877,	0.121688,	0.161599,	2.88972,	0.885562,	0.402058,	0.909395,	0.713875,	0.439257,	0.942913,	0.678971,	0.817784,	0.852869,	0.799386,	0.876072,	-0.769296,	-0.412556,	0.112058,	0.137701,	-0.744683,	0.969938,	0.70773,	0.823122,	0.887617,	0.262039,	0.849356,	0.724021,	-0.473222,	0.813087,	0.321229});
     
@@ -335,7 +410,7 @@ void TestNmolecule4R(double density=0.24, double alpha=0.5,
     
     
     //fourmolsearch.overrideGeneration(myGenes);
-    fourmolsearch.setLambda(alpha);
+    /*fourmolsearch.setLambda(alpha);
     
     std::cout << "Lattice energy is: " << fourmolsearch.getLatticeEnergy() << "\n";
     fourmolsearch.writeXYZ(2.0);
@@ -344,7 +419,7 @@ void TestNmolecule4R(double density=0.24, double alpha=0.5,
     fourmolsearch.run();
     
     fourmolsearch.writeXYZ(2.0);
-    std::cout << "Lattice energy is: " << fourmolsearch.getLatticeEnergy() << "\n";
+    std::cout << "Lattice energy is: " << fourmolsearch.getLatticeEnergy() << "\n";*/
     
     
 }
