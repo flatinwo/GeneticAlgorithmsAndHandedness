@@ -108,6 +108,7 @@ public:
     void overrideGeneration(std::ifstream);
     void overrideGeneration();
     void overrideGeneration(std::vector<double>&);
+    void sortByFitness();
     
     void setDensity(double);
     void setTypeMap(const std::map<std::string, unsigned short>&);

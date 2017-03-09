@@ -24,6 +24,10 @@ struct randomstore{
         return std::uniform_int_distribution<unsigned>{min,max}(eng);
     }    
     
+    unsigned generate(unsigned _min, unsigned _max){
+        return std::uniform_int_distribution<unsigned>{_min,_max}(eng);
+    }
+    
 private:
     std::mt19937 eng{std::random_device{}()};
 };
@@ -32,7 +36,7 @@ class SearchDriver{
 public:
     
     enum SEARCHTYPE { ENANTIOPURE=0, RACEMIC=1, RACEMIZING=2};
-    enum BITTYPE {RANDOMSWEEP=0, FIXEDSWEEP=1, NOSWEEP=2};
+    enum BITTYPE {RANDOMSWEEP=0, FIXEDSWEEP=1, NOSWEEP=2, NARROWINGRANDOMSWEEP=3};
     
     SearchDriver(short, SEARCHTYPE,
                  BITTYPE,

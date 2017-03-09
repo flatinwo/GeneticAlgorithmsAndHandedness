@@ -31,7 +31,7 @@ struct TestRandomEngineSearchDriver: public testing::Test {
 };
 
 TEST_F(TestRandomEngineSearchDriver, checkMean){
-    std::list<unsigned> samplesizes{50,100,1000};
+    std::list<unsigned> samplesizes{500,1000,5000};
     for (std::list<unsigned>::iterator it=samplesizes.begin();
          it != samplesizes.end(); it++){
         float sum=0; int i=0;

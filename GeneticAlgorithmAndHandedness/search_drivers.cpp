@@ -21,7 +21,7 @@ void TestNmolecule1(double density=0.24, double alpha=0.5,
                         alpha,
                         popCount,
                         iterations,
-                        7,
+                        6,
                         31);
     onemol.run();
     

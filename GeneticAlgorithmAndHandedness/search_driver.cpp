@@ -27,7 +27,8 @@ _minbit(bitmin),_maxbit(bitmax)
 {
     _search = nullptr;
     _search_instr = nullptr;
-    _nsweeps=12;
+    _rdinfo = nullptr;
+    _nsweeps=24;
     _initialize();
 }
 
@@ -50,9 +51,15 @@ void SearchDriver::run(){
     _search->writeXYZ(2.0,"initial_lattice.xyz");
     for (unsigned int i=0; i<_nsweeps;i++){
         _search->run();
-        if (Bmode == RANDOMSWEEP) _search->updateBittage(_rdinfo->generate());
-        else if (Bmode == FIXEDSWEEP) _search->updateBittage(_minbit + i*_deltabit);
+        if (Bmode == RANDOMSWEEP)
+            _search->updateBittage(_rdinfo->generate());
+        else if (Bmode == FIXEDSWEEP)
+            _search->updateBittage(_minbit + i*_deltabit);
+        else if (Bmode == NARROWINGRANDOMSWEEP)
+            _search->updateBittage(_rdinfo->generate(_minbit+i*_deltabit,_maxbit));
+            
         fname = str1 + std::to_string(_search->getBittage())+ str2;
+        _search->sortByFitness();
         _search->writeXYZ(2.0,fname.c_str());
         std::cout << "Lattice energy is: " << _search->getLatticeEnergy() << "\n";
     }
@@ -64,8 +71,9 @@ void SearchDriver::setIterationSweep(unsigned int sweeps ){
 }
 
 void SearchDriver::_initialize(){
-    _deltabit = 2;
-    if (Bmode == RANDOMSWEEP) _rdinfo = new randomstore(_minbit,_maxbit);
+    _deltabit = 1;
+    if (Bmode == RANDOMSWEEP || Bmode == NARROWINGRANDOMSWEEP)
+        _rdinfo = new randomstore(_minbit,_maxbit);
 
     
     _molecule_list.resize(_nmol,molecule());

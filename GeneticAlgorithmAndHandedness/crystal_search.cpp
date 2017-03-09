@@ -232,6 +232,10 @@ void CrystalSearch::run(){
    // _writeXYZ();
 }
 
+void CrystalSearch::sortByFitness(){
+    _generation->sortByFitness();
+}
+
 void CrystalSearch::_writeXYZ(double myrCut, const char* filename){
     _setUp(&(_generation->individuals[0]),true);
     
