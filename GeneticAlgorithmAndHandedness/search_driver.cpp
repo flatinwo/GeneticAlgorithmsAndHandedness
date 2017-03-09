@@ -18,7 +18,7 @@ SearchDriver::SearchDriver(short nmol,
                            double density= 0.24,
                            double lambda = 0.5,
                            int popCount= 10000,
-                           int iterations= 10000,
+                           int iterations= 100,
                            int bitmin=7,
                            int bitmax=31):
 _nmol(nmol),Smode(st),Bmode(bt),_density(density),
@@ -50,13 +50,15 @@ void SearchDriver::run(){
     std::string fname("");
     _search->writeXYZ(2.0,"initial_lattice.xyz");
     for (unsigned int i=0; i<_nsweeps;i++){
-        _search->run();
+        
         if (Bmode == RANDOMSWEEP)
             _search->updateBittage(_rdinfo->generate());
         else if (Bmode == FIXEDSWEEP)
             _search->updateBittage(_minbit + i*_deltabit);
         else if (Bmode == NARROWINGRANDOMSWEEP)
             _search->updateBittage(_rdinfo->generate(_minbit+i*_deltabit,_maxbit));
+        
+        _search->run();
             
         fname = str1 + std::to_string(_search->getBittage())+ str2;
         _search->sortByFitness();

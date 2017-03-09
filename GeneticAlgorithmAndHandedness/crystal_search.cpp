@@ -255,8 +255,11 @@ void CrystalSearch::_writeXYZ(double myrCut, const char* filename){
     << (2*kMax+1)*_a3.x << "\t" << (2*kMax+1)*_a3.y << "\t" << (2*kMax+1)*_a3.z << "\n";
     myinfo.close();
     
-    std::ofstream myxyz(filename);
-    myxyz << ((2*iMax + 1)*(2*jMax + 1 )*(2*kMax + 1)*_mymolecules.size())*_mymolecules.begin()->first.size() << "\n\n"; //assumes all molecules are the same size... it might make sense to have a counter here
+    std::ofstream myxyz(filename, std::ios_base::app | std::ios_base::out );
+    myxyz << ((2*iMax + 1)*(2*jMax + 1 )*(2*kMax + 1)*_mymolecules.size())*_mymolecules.begin()->first.size() << "\n"; //assumes all molecules are the same size... it might make sense to have a counter here
+    myxyz << (2*iMax+1)*_a1.x << "\t" << (2*jMax+1)*_a2.x << "\t" << (2*jMax+1)*_a2.y << "\t"
+    << (2*kMax+1)*_a3.x << "\t" << (2*kMax+1)*_a3.y << "\t" << (2*kMax+1)*_a3.z << "\n";
+    
     int ncount=0;
     for (int i=-iMax; i<= iMax; i++){
         for (int j=-jMax; j<= jMax; j++ ){
