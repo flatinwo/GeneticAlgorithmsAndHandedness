@@ -8,6 +8,7 @@
 
 #include "search_driver.hpp"
 #include "molecules.h"
+#include <limits>
 
 static std::random_device rd;  //Will be used to obtain a seed for the random number engine
 static std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
@@ -28,7 +29,7 @@ _minbit(bitmin),_maxbit(bitmax)
     _search = nullptr;
     _search_instr = nullptr;
     _rdinfo = nullptr;
-    _nsweeps=24;
+    _nsweeps=100;
     _initialize();
 }
 
@@ -41,6 +42,21 @@ SearchDriver::~SearchDriver(){
 void SearchDriver::setSeed(unsigned seed){
     assert(_rdinfo != nullptr);
     assert(0);
+    
+}
+
+void SearchDriver::keepBest(double current_en){
+   
+    if (current_en < bestEnergy){
+        std::ofstream logBest("logBest.dat",std::ios_base::app|std::ios_base::out);
+        logBest << current_en << "\t" << bestEnergy << "\n";
+        logBest.close();
+        
+        bestEnergy = current_en;
+        _search->writeXYZ(2.0,"best_lattices.xyz");
+        _search->printBestIndividual();
+        
+    }
     
 }
 
@@ -63,7 +79,12 @@ void SearchDriver::run(){
         fname = str1 + std::to_string(_search->getBittage())+ str2;
         _search->sortByFitness();
         _search->writeXYZ(2.0,fname.c_str());
-        std::cout << "Lattice energy is: " << _search->getLatticeEnergy() << "\n";
+        
+        double current_energy = _search->getLatticeEnergy();
+        if (saveBest) keepBest(current_energy);
+        
+        std::cout << "Current Best Lattice energy is: " << current_energy << "\n";
+        if (saveBest) std::cout << "Overall Best Lattice energy is: " << bestEnergy << "\n";
     }
     
 }
@@ -73,6 +94,8 @@ void SearchDriver::setIterationSweep(unsigned int sweeps ){
 }
 
 void SearchDriver::_initialize(){
+    bestEnergy = std::numeric_limits<double>::max();
+    saveBest = true;
     _deltabit = 1;
     if (Bmode == RANDOMSWEEP || Bmode == NARROWINGRANDOMSWEEP)
         _rdinfo = new randomstore(_minbit,_maxbit);

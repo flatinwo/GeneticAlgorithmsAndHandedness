@@ -118,6 +118,7 @@ public:
     unsigned getBittage();
     
     void resetIterationLog(){_itlog = 0;};
+    void printBestIndividual();
     
     
 protected:

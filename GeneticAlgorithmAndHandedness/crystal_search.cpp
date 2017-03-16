@@ -258,7 +258,7 @@ void CrystalSearch::_writeXYZ(double myrCut, const char* filename){
     std::ofstream myxyz(filename, std::ios_base::app | std::ios_base::out );
     myxyz << ((2*iMax + 1)*(2*jMax + 1 )*(2*kMax + 1)*_mymolecules.size())*_mymolecules.begin()->first.size() << "\n"; //assumes all molecules are the same size... it might make sense to have a counter here
     myxyz << (2*iMax+1)*_a1.x << "\t" << (2*jMax+1)*_a2.x << "\t" << (2*jMax+1)*_a2.y << "\t"
-    << (2*kMax+1)*_a3.x << "\t" << (2*kMax+1)*_a3.y << "\t" << (2*kMax+1)*_a3.z << "\n";
+    << (2*kMax+1)*_a3.x << "\t" << (2*kMax+1)*_a3.y << "\t" << (2*kMax+1)*_a3.z << "\tbox_dim\n";
     
     int ncount=0;
     for (int i=-iMax; i<= iMax; i++){
@@ -281,6 +281,38 @@ void CrystalSearch::_writeXYZ(double myrCut, const char* filename){
     std::cout << "Total lines written is " << ncount << "\n";
     
     
+}
+
+
+void CrystalSearch::printBestIndividual(){
+    _generation->sortByFitness();
+    individual* best_ind = &(_generation->individuals[0]);
+    
+    std::ofstream bPInfo("bestSolutionParameter.dat",std::ios_base::app | std::ios_base::out);
+    std::ofstream bVInfo("bestSolutionVector.dat",std::ios_base::app | std::ios_base::out);
+    
+    
+    //write solution parameter values
+    bPInfo << _gencount << "\t";
+    for (auto& m : best_ind->genes) bPInfo << m.getValue() << "\t";
+    bPInfo << getBittage() << "\n";
+    
+    //write solution vector values
+    _setUp(best_ind);
+    
+    bVInfo << _gencount << "\t";
+    bVInfo << _a1.x << "\t" << _a1.y << "\t" << _a1.z << "\t";
+    bVInfo << _a2.x << "\t" << _a2.y << "\t" << _a2.z << "\t";
+    bVInfo << _a3.x << "\t" << _a3.y << "\t" << _a3.z << "\t";
+    
+    for (auto& s : _dcm) bVInfo << s.x << "\t" << s.y << "\t" << s.z << "\t";
+    for (auto& s : _axangle) bVInfo << s.coords.x << "\t" << s.coords.y << "\t" << s.coords.z << "\t" << s.scalar << "\t";
+    
+    if (_myconfig->s_flag) bVInfo << (best_ind->genes.back()).getValue();
+    bVInfo << "\n";
+    
+    bPInfo.close();
+    bVInfo.close();
 }
 
 void CrystalSearch::_printIndividual(unsigned int i){

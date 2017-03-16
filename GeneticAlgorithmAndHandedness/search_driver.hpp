@@ -59,8 +59,6 @@ public:
     
     void overrideGenes(std::vector<double>&);
     
-    
-private:
 
 protected:
     const int _nmol;
@@ -72,6 +70,9 @@ protected:
     SEARCHTYPE Smode;
     BITTYPE Bmode;
     randomstore* _rdinfo;
+    bool saveBest;
+    double bestEnergy;
+    
     
     double _density;
     double _lambda;
@@ -85,6 +86,7 @@ protected:
 
     
     virtual void _initialize();
+    void keepBest(double);
     
     
 
