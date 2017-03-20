@@ -17,6 +17,11 @@
 #include <array>
 #include <algorithm>
 #include <cassert>
+#include "ran2.hpp"
+
+#include <iostream>
+#include <random>
+#include <limits>
 
 
 #define MYCOMBMAX 32
@@ -39,7 +44,7 @@ struct configs_t{
     
     std::map< std::string, double> chiralitymap;
     
-    configs_t(int n=1, bool or_flag=true, bool sw_flag=true, unsigned int xbit=10):bit(xbit),o_flag(or_flag),s_flag(sw_flag){
+    configs_t(int n=1, bool or_flag=true, bool sw_flag=true, unsigned int xbit=10, bool randomize=true):bit(xbit),o_flag(or_flag),s_flag(sw_flag){
         molecules.resize(n,molecule());
         maxmolecules = 1024;
         iterations = 500;
@@ -64,6 +69,20 @@ struct configs_t{
                     initGenes.push_back(gene(bit,-1.0,1.0)); //quaternions for rotation
         
         if (s_flag) initGenes.push_back(gene(2,0.0,1.0)); //probability of switching molecule identity
+        
+        if (randomize){
+            std::random_device rd;     //Get a random seed from the OS entropy device, or whatever
+            std::mt19937_64 eng(rd()); //Use the 64-bit Mersenne Twister 19937 generator
+            //and seed it with entropy.
+            
+            //Define the distribution, by default it goes from 0 to MAX(unsigned long long)
+            //or what have you.
+            std::uniform_int_distribution<int> distr;
+            seed = distr(eng);
+            std::cerr << "My set seed is now:\n" << seed << "\n";
+            for (auto& g : initGenes) g.randomize();
+        }
+        
         
     }
     
