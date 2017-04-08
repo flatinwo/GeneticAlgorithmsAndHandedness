@@ -6,6 +6,8 @@
 //  Copyright © 2016 Folarin Latinwo. All rights reserved.
 //  Adapted from code provided by Arash
 
+// to do next multithread monte carlo search
+
 
 #include "GenAlgoAndHands.h"
 using namespace std;

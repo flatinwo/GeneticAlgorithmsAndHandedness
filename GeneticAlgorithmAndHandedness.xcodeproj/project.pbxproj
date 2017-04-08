@@ -7,8 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1776EA1E71BC2C00BAB7B4 /* search_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAC055281E5F75370080871F /* search_driver.cpp */; };
 		AA29619A1DFF5E8A0010AA83 /* operators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA2961981DFF5E8A0010AA83 /* operators.cpp */; };
 		AA29619D1DFF613A0010AA83 /* crystal_search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA29619B1DFF613A0010AA83 /* crystal_search.cpp */; };
+		AA44222C1E48EA6A00EFA974 /* search_drivers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA44222A1E48EA6A00EFA974 /* search_drivers.cpp */; };
+		AA44222F1E4909DA00EFA974 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44222E1E4909DA00EFA974 /* gtest.framework */; };
+		AA4422371E491E2700EFA974 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA4422361E491E2700EFA974 /* main.cpp */; };
+		AA44223D1E4926E200EFA974 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA44222E1E4909DA00EFA974 /* gtest.framework */; };
+		AA4422411E492C9D00EFA974 /* gene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE81D666C2E00A4EA9C /* gene.cpp */; };
+		AA4422421E492CC800EFA974 /* ran2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE21D666AE600A4EA9C /* ran2.cpp */; };
+		AAC055221E5F4FA60080871F /* crystal_search.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA29619B1DFF613A0010AA83 /* crystal_search.cpp */; };
+		AAC055231E5F4FEF0080871F /* lattice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE51D666B7A00A4EA9C /* lattice.cpp */; };
+		AAC055241E5F4FEF0080871F /* operators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA2961981DFF5E8A0010AA83 /* operators.cpp */; };
+		AAC055251E5F4FEF0080871F /* search_drivers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA44222A1E48EA6A00EFA974 /* search_drivers.cpp */; };
+		AAC055261E5F4FEF0080871F /* individual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DEB1D666CAD00A4EA9C /* individual.cpp */; };
+		AAC055271E5F4FEF0080871F /* generation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DEE1D666D1F00A4EA9C /* generation.cpp */; };
+		AAC0552A1E5F75370080871F /* search_driver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAC055281E5F75370080871F /* search_driver.cpp */; };
 		AAE90DDC1D666A9F00A4EA9C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DDB1D666A9F00A4EA9C /* main.cpp */; };
 		AAE90DE41D666AE600A4EA9C /* ran2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE21D666AE600A4EA9C /* ran2.cpp */; };
 		AAE90DE71D666B7A00A4EA9C /* lattice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE90DE51D666B7A00A4EA9C /* lattice.cpp */; };
@@ -18,6 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AA4422321E491E2700EFA974 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		AAE90DD61D666A9F00A4EA9C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -30,11 +53,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA1BBB0C1E6E165600B6FB11 /* test_random_search_driver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_random_search_driver.h; sourceTree = "<group>"; };
 		AA2961981DFF5E8A0010AA83 /* operators.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = operators.cpp; sourceTree = "<group>"; };
 		AA2961991DFF5E8A0010AA83 /* operators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = operators.hpp; sourceTree = "<group>"; };
 		AA29619B1DFF613A0010AA83 /* crystal_search.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crystal_search.cpp; sourceTree = "<group>"; };
 		AA29619C1DFF613A0010AA83 /* crystal_search.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = crystal_search.hpp; sourceTree = "<group>"; };
+		AA44222A1E48EA6A00EFA974 /* search_drivers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search_drivers.cpp; sourceTree = "<group>"; };
+		AA44222B1E48EA6A00EFA974 /* search_drivers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = search_drivers.hpp; sourceTree = "<group>"; };
+		AA44222D1E48ED1C00EFA974 /* GenAlgoAndHands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenAlgoAndHands.h; sourceTree = "<group>"; };
+		AA44222E1E4909DA00EFA974 /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../../../Desktop/gtest.framework; sourceTree = "<group>"; };
+		AA4422341E491E2700EFA974 /* Tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tests; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA4422361E491E2700EFA974 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AA44223B1E491EF000EFA974 /* test_gene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_gene.h; sourceTree = "<group>"; };
 		AAA0962F1E15C71B00725CAE /* main_dep.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_dep.cpp; sourceTree = "<group>"; };
+		AAA757551E66750A000ADB1D /* molecules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = molecules.h; sourceTree = "<group>"; };
+		AAC055211E5F4BBD0080871F /* test_crystal_search.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_crystal_search.h; sourceTree = "<group>"; };
+		AAC055281E5F75370080871F /* search_driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = search_driver.cpp; sourceTree = "<group>"; };
+		AAC055291E5F75370080871F /* search_driver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = search_driver.hpp; sourceTree = "<group>"; };
+		AAC0552B1E60E53E0080871F /* test_lattice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test_lattice.h; sourceTree = "<group>"; };
 		AAE90DD81D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GeneticAlgorithmAndHandedness; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE90DDB1D666A9F00A4EA9C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AAE90DE21D666AE600A4EA9C /* ran2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ran2.cpp; sourceTree = "<group>"; };
@@ -50,16 +86,37 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA4422311E491E2700EFA974 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA44223D1E4926E200EFA974 /* gtest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAE90DD51D666A9F00A4EA9C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA44222F1E4909DA00EFA974 /* gtest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA4422351E491E2700EFA974 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AA4422361E491E2700EFA974 /* main.cpp */,
+				AA44223B1E491EF000EFA974 /* test_gene.h */,
+				AAC055211E5F4BBD0080871F /* test_crystal_search.h */,
+				AA1BBB0C1E6E165600B6FB11 /* test_random_search_driver.h */,
+				AAC0552B1E60E53E0080871F /* test_lattice.h */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		AAA0962E1E15C70000725CAE /* deprecated */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,10 +125,21 @@
 			name = deprecated;
 			sourceTree = "<group>";
 		};
+		AADC5A801E8EAFED00E33B61 /* BuildUtils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = BuildUtils;
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		AAE90DCF1D666A9E00A4EA9C = {
 			isa = PBXGroup;
 			children = (
+				AA44222E1E4909DA00EFA974 /* gtest.framework */,
 				AAE90DDA1D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */,
+				AA4422351E491E2700EFA974 /* Tests */,
+				AADC5A801E8EAFED00E33B61 /* BuildUtils */,
 				AAE90DD91D666A9F00A4EA9C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE90DD81D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */,
+				AA4422341E491E2700EFA974 /* Tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,11 +157,17 @@
 			isa = PBXGroup;
 			children = (
 				AAE90DDB1D666A9F00A4EA9C /* main.cpp */,
+				AA44222D1E48ED1C00EFA974 /* GenAlgoAndHands.h */,
 				AAE90DE21D666AE600A4EA9C /* ran2.cpp */,
 				AAE90DE51D666B7A00A4EA9C /* lattice.cpp */,
 				AA2961981DFF5E8A0010AA83 /* operators.cpp */,
 				AA29619B1DFF613A0010AA83 /* crystal_search.cpp */,
 				AA29619C1DFF613A0010AA83 /* crystal_search.hpp */,
+				AA44222A1E48EA6A00EFA974 /* search_drivers.cpp */,
+				AAC055281E5F75370080871F /* search_driver.cpp */,
+				AAA757551E66750A000ADB1D /* molecules.h */,
+				AAC055291E5F75370080871F /* search_driver.hpp */,
+				AA44222B1E48EA6A00EFA974 /* search_drivers.hpp */,
 				AA2961991DFF5E8A0010AA83 /* operators.hpp */,
 				AAE90DE81D666C2E00A4EA9C /* gene.cpp */,
 				AAE90DEB1D666CAD00A4EA9C /* individual.cpp */,
@@ -110,6 +185,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA4422331E491E2700EFA974 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA4422381E491E2700EFA974 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				AA4422301E491E2700EFA974 /* Sources */,
+				AA4422311E491E2700EFA974 /* Frameworks */,
+				AA4422321E491E2700EFA974 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = AA4422341E491E2700EFA974 /* Tests */;
+			productType = "com.apple.product-type.tool";
+		};
 		AAE90DD71D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAE90DDF1D666A9F00A4EA9C /* Build configuration list for PBXNativeTarget "GeneticAlgorithmAndHandedness" */;
@@ -133,9 +225,13 @@
 		AAE90DD01D666A9E00A4EA9C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Folarin Latinwo";
 				TargetAttributes = {
+					AA4422331E491E2700EFA974 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					AAE90DD71D666A9F00A4EA9C = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -154,11 +250,29 @@
 			projectRoot = "";
 			targets = (
 				AAE90DD71D666A9F00A4EA9C /* GeneticAlgorithmAndHandedness */,
+				AA4422331E491E2700EFA974 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA4422301E491E2700EFA974 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAC055231E5F4FEF0080871F /* lattice.cpp in Sources */,
+				AAC055241E5F4FEF0080871F /* operators.cpp in Sources */,
+				AAC055251E5F4FEF0080871F /* search_drivers.cpp in Sources */,
+				AAC055261E5F4FEF0080871F /* individual.cpp in Sources */,
+				AAC055271E5F4FEF0080871F /* generation.cpp in Sources */,
+				AAC055221E5F4FA60080871F /* crystal_search.cpp in Sources */,
+				AA4422411E492C9D00EFA974 /* gene.cpp in Sources */,
+				AA4422371E491E2700EFA974 /* main.cpp in Sources */,
+				AA4422421E492CC800EFA974 /* ran2.cpp in Sources */,
+				AA1776EA1E71BC2C00BAB7B4 /* search_driver.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAE90DD41D666A9F00A4EA9C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,15 +282,41 @@
 				AA29619D1DFF613A0010AA83 /* crystal_search.cpp in Sources */,
 				AAE90DE41D666AE600A4EA9C /* ran2.cpp in Sources */,
 				AAE90DF01D666D1F00A4EA9C /* generation.cpp in Sources */,
+				AA44222C1E48EA6A00EFA974 /* search_drivers.cpp in Sources */,
 				AAE90DED1D666CAD00A4EA9C /* individual.cpp in Sources */,
 				AA29619A1DFF5E8A0010AA83 /* operators.cpp in Sources */,
 				AAE90DDC1D666A9F00A4EA9C /* main.cpp in Sources */,
+				AAC0552A1E5F75370080871F /* search_driver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		AA4422391E491E2700EFA974 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AA44223A1E491E2700EFA974 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		AAE90DDD1D666A9F00A4EA9C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -190,8 +330,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -233,8 +375,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -273,6 +417,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA4422381E491E2700EFA974 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA4422391E491E2700EFA974 /* Debug */,
+				AA44223A1E491E2700EFA974 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AAE90DD31D666A9E00A4EA9C /* Build configuration list for PBXProject "GeneticAlgorithmAndHandedness" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
