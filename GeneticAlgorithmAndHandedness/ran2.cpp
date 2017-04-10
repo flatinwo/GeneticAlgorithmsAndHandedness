@@ -6,6 +6,8 @@
 //  Copyright © 2016 Folarin Latinwo. All rights reserved.
 //
 
+//http://stackoverflow.com/questions/21237905/how-do-i-generate-thread-safe-uniform-random-numbers
+
 #include "ran2.hpp"
 // definiere konstanten, siehe numerical recipes for c
 #define IM1 2147483563
