@@ -13,6 +13,7 @@
 #include "test_gene.h"
 #include "gene.hpp"
 #include "test_random_search_driver.h"
+#include "test_search_driver.h"
 
 int main(int argc, char * argv[]) {
 

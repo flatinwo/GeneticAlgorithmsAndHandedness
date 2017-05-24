@@ -45,6 +45,10 @@ void SearchDriver::setSeed(unsigned seed){
     
 }
 
+void SearchDriver::overrideGenes(std::vector<double>& genes){
+    _search->overrideGeneration(genes);
+}
+
 void SearchDriver::keepBest(double current_en){
    
     if (current_en < bestEnergy){

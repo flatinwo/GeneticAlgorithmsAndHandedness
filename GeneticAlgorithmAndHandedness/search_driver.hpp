@@ -14,6 +14,8 @@
 #include <vector>
 #include <random>
 
+//encapsulate here for connecting with boost python
+
 struct randomstore{
     
     unsigned min, max;
@@ -56,8 +58,10 @@ public:
     void updateBittage(unsigned int);
     void setIterationSweep(unsigned int);
  
+    double getEnergy(){return _search->getLatticeEnergy();};
     
     void overrideGenes(std::vector<double>&);
+    void overrideGenes(){ _search->overrideGeneration();};
     
 
 protected:

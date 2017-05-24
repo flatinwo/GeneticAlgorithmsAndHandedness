@@ -47,6 +47,8 @@ void CrystalSearch::overrideGeneration(){
         if (count > iGenes.size()) break;
     }
     
+    for (unsigned int j=0; j<_generation->individuals.size();j++)
+        _generation->individuals[j] = iGenes;
 }
 
 void CrystalSearch::writeXYZ(double myrcut,const char* filename){

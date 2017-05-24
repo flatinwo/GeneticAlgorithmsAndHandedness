@@ -115,4 +115,11 @@ TEST_F(CrystalSearchTest,updateBittageValue){
     
 }
 
+
+/*TEST_F(CrystalSearchTest,overrideGeneration){
+    search->overrideGeneration();
+    double energy = search->getLatticeEnergy();
+    std::cout << energy << "\n";
+}*/
+
 #endif /* test_crystal_search_h */
