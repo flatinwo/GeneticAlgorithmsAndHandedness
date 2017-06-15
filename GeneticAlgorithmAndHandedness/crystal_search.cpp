@@ -107,6 +107,29 @@ double CrystalSearch::getLatticeEnergy(){
     return _computeFitness(_generation->individuals[0],true);
 }
 
+double CrystalSearch::getClusterEnergy(){
+    double en = 0.;
+    _setUp(&(_generation->individuals[0]),true);
+    
+    for (unsigned int l=0;l<_mymolecules.size(); l++){
+        double zeta1 = _chiralitymap[_mymolecules[l].second];
+        for (unsigned int m=0; m<_mymolecules.size(); m++){
+            if (l==m) continue;
+            double zeta2 = _chiralitymap[_mymolecules[m].second];
+            
+            for (unsigned int n=0; n < _mymolecules[l].first.size(); n++){
+                double3 ref_part = _mymolecules[l].first[n];
+                for (unsigned int o=0; o<_mymolecules[m].first.size(); o++){
+                    double3 part = _mymolecules[m].first[o];
+                    en += (1. + _lambda*zeta1*zeta2)*vLJ(1./((part-ref_part).get2Norm()));
+                }
+            }
+            
+        }
+    }
+    return en/(double) _mymolecules.size();
+}
+
 double CrystalSearch::_computeFitness(individual& ind, bool returnEnergy){
     _setUp(&ind,true);
     double a1l, a2l, a3l;
