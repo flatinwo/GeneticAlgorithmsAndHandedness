@@ -123,6 +123,7 @@ public:
     void writeXYZ(double=0.,const char* filename="lattice.xyz");
     void run();
     double getLatticeEnergy();
+    double getClusterEnergy();
     
     void overrideGeneration(std::ifstream);
     void overrideGeneration();

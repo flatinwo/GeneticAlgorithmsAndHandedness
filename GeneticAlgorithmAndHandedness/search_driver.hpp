@@ -59,6 +59,7 @@ public:
     void setIterationSweep(unsigned int);
  
     double getEnergy(){return _search->getLatticeEnergy();};
+    double getClusterEnergy(){return _search->getClusterEnergy();};
     void writeXYZ(double r){_search->writeXYZ(r,"best_lattices.xyz");};
     
     void overrideGenes(std::vector<double>&);

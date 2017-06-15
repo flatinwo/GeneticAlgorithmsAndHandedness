@@ -97,7 +97,15 @@ TEST_F(SearchDriverTest,Energy1){
     SetUp(2,0.24,-0.50);
     std::vector<double> v{0.789666,	0.624805,	0.508338,	0.665289,	0.6255,	-0.0182806,	0.124851,	0.499619,	-0.0159612,	0.851497,	0.0168157,	-0.832514,	-0.562731,	-0.575915,	-0.600208,	0.588855,	0.733333};
     driver->overrideGenes(v);
-   EXPECT_NE(-30.3527, driver->getEnergy()) ;
+    EXPECT_NEAR(-30.3527, driver->getEnergy(), 0.01) ;
+}
+
+TEST_F(SearchDriverTest,clusterEnergy){
+    SetUp(2,0.24,-0.50);
+    std::vector<double> v{0.789666,	0.624805,	0.508338,	0.665289,	0.6255,	-0.0182806,	0.124851,	0.499619,	-0.0159612,	0.851497,	0.0168157,	-0.832514,	-0.562731,	-0.575915,	-0.600208,	0.588855,	0.733333};
+    driver->overrideGenes(v);
+    EXPECT_NEAR(-12.3853, driver->getClusterEnergy(),0.01);
+    EXPECT_NE(0,driver->getClusterEnergy());
 }
 
 
